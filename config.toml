@@ -1,6 +1,6 @@
 baseURL       = "http://example.org/"
 languageCode  = "en-us"
-title         = "Roxo | Creative Design Agency"
+title         = "Website Blog | Helen Evangelina"
 theme = "roxo-hugo"
 summarylength = 25
 
@@ -16,22 +16,14 @@ summarylength = 25
     url     = "about"
     weight  = 2
   [[menu.nav]]
-    name    = "Portfolio"
-    url     = "portfolio"
-    weight  = 3
-  [[menu.nav]]
     name    = "Blog"
     url     = "blog"
     weight  = 4
-  [[menu.nav]]
-    name    = "Get in touch"
-    url     = "contact"
-    weight  = 5
 
 # Site Params
 [params]
-  logo = "images/logo.png"
-  dateFormat = "26 FEB 1994"
+  logo = "images/helen.png"
+  dateFormat = "28 AUGUST 2020"
   # Meta data
   description = "Roxo Hugo themes | Design Agency Template by StaticMania"
   author = "StaticMania"
@@ -42,7 +34,7 @@ summarylength = 25
   
   # Navbar Action Button
   [params.navAction]
-    status  = true
+    status  = false
     name    = "Get in touch"
     url     = "contact"
   
@@ -51,20 +43,20 @@ summarylength = 25
   [params.banner]
     enable                = true
     background_image      = "images/backgrounds/hero-background.jpg"
-    heading               = "We’re a Design Studio That Belies In the Great Ideas"
+    heading               = "Helen Evangelina's Blog"
     tagline               = "WE WORK HARD, WE PLAY HARD"
-    primary_button        = "See Our Works"
-    primary_button_url    = "portfolio"
-    secondary_button      = "Connect with Us"
-    secondary_button_url  = "contact"
+    primary_button        = "See My Profile"
+    primary_button_url    = "about"
+    secondary_button      = "My Blog Posts"
+    secondary_button_url  = "Blog"
 
   [params.portfolio]
-    enable    = true
+    enable    = false
     title     = "OUR RECENT WORKS"
     subtitle  = "Crafting experiences and seeking to make the complex clear & beautiful."
 
   [params.call_to_action]
-    enable              = true
+    enable              = false
     background_image    = "images/backgrounds/cta-background.jpg"
     title               = "LET’S WORK TOGETHER"
     primary_button      = "Submit Query"
@@ -76,24 +68,8 @@ summarylength = 25
     # Footer Contact Info
     [params.footer.contactInfo]
       title   = "Contact Info"
-      address = "713 Elmwood St.<br>Prior Lake, MN 55372"
-      phone   = "409-896-1444"
-      email   = "info@roxo.co"
-      # Footer Sitemap
-      [params.footer.sitemap]
-        title   = "Sitemap"
-        [[params.footer.sitemap.link]]
-          name = "About Company"
-          url  = "about"
-        [[params.footer.sitemap.link]]
-          name = "Projects"
-          url  = "portfolio"
-        [[params.footer.sitemap.link]]
-          name = "Blog"
-          url  = "blog"
-        [[params.footer.sitemap.link]]
-          name = "Contact"
-          url  = "contact"
+      phone   = "00000000"
+      email   = "helenevangelina@yahoo.com"
       # Footer Social Media
       [params.footer.social]
         title   = "Social Media"
@@ -109,7 +85,4 @@ summarylength = 25
         [[params.footer.social.link]]
           name = "Instagram"
           url  = "#"
-      # Footer Service
-      [params.footer.service]
-        title       = "We help brands:"
-        description = "develop design solutions<br>produce valuable cultural content<br>create fresh brand experience"
+    

@@ -1,5 +1,5 @@
-enable  : true
-contactFormTitle    : CONTACT WITH ME
+enable  : false
+contactFormTitle    : CONTACT ME
 contactFormSubtitle : >
   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ea! consectetur adipisicing elit. Dolore, ea!
 mapTitle    : FIND US

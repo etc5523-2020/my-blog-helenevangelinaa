@@ -1,4 +1,4 @@
-enable  : true
+enable  : false
 galleryImages :
   - image : images/portfolio/item-1.jpg
   - image : images/portfolio/item-2.jpg
