@@ -25,4 +25,6 @@ covid_data_spain <- download_merged_data(cached = TRUE, silent = TRUE) %>%
 
 ```
 
-# Data Description
+## Data Description
+
+## Data Story
