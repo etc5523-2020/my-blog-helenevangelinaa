@@ -17,14 +17,34 @@ library(tidycovid19)
 library(zoo)
 library(ggplot2)
 library(kableExtra)
+library(DT)
 ```
 
 ```{r loading-data-spain}
 covid_data_spain <- download_merged_data(cached = TRUE, silent = TRUE) %>%
   filter(country == "Spain")
-
 ```
 
 ## Data Description
+The data is taken from https://github.com/joachim-gassen/tidycovid19
 
 ## Data Story
+```{r wrangling-data}
+data_wrangled <- covid_data_spain %>% 
+  mutate(confirmed_lag = lag(confirmed),
+         daily_confirmed = confirmed - confirmed_lag,
+         death_lag = lag(deaths),
+         daily_death = deaths - death_lag,
+         recovered_lag = lag(recovered),
+         daily_recovered = recovered - recovered_lag)
+```
+
+```{r}
+data_table1 <- data_wrangled %>%
+  select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered)
+```
+
+```{r}
+DT::datatable(data_table1, options = list(pageLength = 4))
+```
+
