@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us"><head>
   <meta charset="utf-8" />
-  <title>Design Inspiration: The Best Projects From December</title>
+  <title>Blog 1 - COVID-19 Cases in Spain</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -86,36 +86,42 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <article class="site-blog-details">
-          <p><span>December 24, 2019</span> by <span>Alexender Schoitiz</span></p>
-          <h2 class="blog-title">Design Inspiration: The Best Projects From December</h2>
-          <img class="feature-image" src="/images/blog/blog-details-image.jpg" alt="blog-feature-image">
-          <h3 id="black-lines-brand-identity-by--smith">Black Lines brand identity, by &amp; Smith</h3>
-<p>Black Lines wants it to be as easy to serve a Negroni as it is a pint of lager. The drinks company is seeking to revolutionise the bar experience by serving cocktails by draught with a changing menu of drinks (as well as same favourite stand-bys). A pink grapefruit spritz was served through the summer while a new pear and white tea fizz joins the line-up for winter.</p>
-<ol>
-<li>ROFL means Rolling on floor laughing.</li>
-<li>STFU means Shut the <em>freak</em> up.</li>
-<li>LMK means Let me know.</li>
-<li>ILY means I love you.</li>
-<li>YOLO means You only live once.</li>
-<li>SMH means Shaking my head.</li>
-</ol>
-<p>The company was previously known as Hingston + Co. but has been given a complete rebrand — including a new logo, tap badges, website and branded material — by London-based design studio &amp; Smith. The new identity is based on the Kandinsky abstract painting, Black Lines, and true to its name, is mostly black and white with a few flashes of colour. According to &amp; Smith, the identity brings together “art and science” and has been brought to life through collaborations with nine illustrators.</p>
-<ol>
-<li>ROFL means Rolling on floor laughing.</li>
-<li>STFU means Shut the <em>freak</em> up.</li>
-<li>LMK means Let me know.</li>
-<li>ILY means I love you.</li>
-<li>YOLO means You only live once.</li>
-<li>SMH means Shaking my head.</li>
-</ol>
-<p><img src="https://user-images.githubusercontent.com/16266381/71399826-2009b380-264f-11ea-9bc3-59d7fa9a9994.jpg" alt="blog-details-image-02"></p>
-<p>Black Lines wants it to be as easy to serve a Negroni as it is a pint of lager. The drinks company is seeking to revolutionise the bar experience by serving cocktails by draught with a changing menu of drinks (as well as same favourite stand-bys). A pink grapefruit spritz was served through the summer while a new pear and white tea fizz joins the line-up for winter.</p>
-<blockquote>
-<p>&ldquo;The public is more familiar with bad design than good design. It is, in effect, conditioned to prefer bad design, because that is what it lives with. The new becomes threatening, the old reassuring.&rdquo;</p>
-</blockquote>
-<blockquote>
-<p>Paul Rand, graphic designer</p>
-</blockquote>
+          <p><span>January 1, 0001</span> by <span>Helen Evangelina</span></p>
+          <h2 class="blog-title">Blog 1 - COVID-19 Cases in Spain</h2>
+          <img class="feature-image" src="/" alt="blog-feature-image">
+          
+
+
+<pre class="r"><code>#installing package
+#devtools::install_github(&quot;joachim-gassen/tidycovid19&quot;)
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ----------------</code></pre>
+<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts -------------------------
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(tidycovid19)
+library(zoo)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(kableExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<pre class="r"><code>covid_data_spain &lt;- download_merged_data(cached = TRUE, silent = TRUE) %&gt;%
+  filter(country == &quot;Spain&quot;)</code></pre>
+<div id="data-description" class="section level1">
+<h1>Data Description</h1>
+</div>
 
         </article>
       </div>

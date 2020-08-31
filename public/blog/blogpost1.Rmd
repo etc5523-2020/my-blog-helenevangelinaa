@@ -1,0 +1,28 @@
+---
+title: "Blog 1 - COVID-19 Cases in Spain"
+author: "Helen Evangelina"
+date: "31/08/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r loading-packages}
+#installing package
+#devtools::install_github("joachim-gassen/tidycovid19")
+library(tidyverse)
+library(tidycovid19)
+library(zoo)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r loading-data-spain}
+covid_data_spain <- download_merged_data(cached = TRUE, silent = TRUE) %>%
+  filter(country == "Spain")
+
+```
+
+# Data Description
