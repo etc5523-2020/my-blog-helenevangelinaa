@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us"><head>
   <meta charset="utf-8" />
-  <title>COVID-19 Cases in Spain</title>
+  <title>hellooooooooo</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,36 +87,9 @@
       <div class="col-lg-8">
         <article class="site-blog-details">
           <p><span>January 1, 0001</span> by <span>Helen Evangelina</span></p>
-          <h2 class="blog-title">COVID-19 Cases in Spain</h2>
-          <img class="feature-image" src="/" alt="blog-feature-image">
-          <pre><code class="language-{r" data-lang="{r">knitr::opts_chunk$set(echo = TRUE)
-</code></pre><pre><code class="language-{r" data-lang="{r">#installing package
-#devtools::install_github(&quot;joachim-gassen/tidycovid19&quot;)
-library(tidyverse)
-library(tidycovid19)
-library(zoo)
-library(ggplot2)
-library(kableExtra)
-library(DT)
-library(bookdown)
-library(blogdown)
-</code></pre><pre><code class="language-{r" data-lang="{r">covid_data_spain &lt;- download_merged_data(cached = TRUE, silent = TRUE) %&gt;%
-  filter(country == &quot;Spain&quot;)
-</code></pre><h2 id="data-description">Data Description</h2>
-<p>The data is taken from <a href="https://github.com/joachim-gassen/tidycovid19">https://github.com/joachim-gassen/tidycovid19</a></p>
-<h2 id="data-story">Data Story</h2>
-<pre><code class="language-{r" data-lang="{r">data_wrangled &lt;- covid_data_spain %&gt;% 
-  mutate(confirmed_lag = lag(confirmed),
-         daily_confirmed = confirmed - confirmed_lag,
-         death_lag = lag(deaths),
-         daily_death = deaths - death_lag,
-         recovered_lag = lag(recovered),
-         daily_recovered = recovered - recovered_lag)
-</code></pre><pre><code class="language-{r}" data-lang="{r}">data_table1 &lt;- data_wrangled %&gt;%
-  select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered)
-</code></pre><pre><code class="language-{r" data-lang="{r">DT::datatable(data_table1, options = list(pageLength = 4))
-</code></pre><p>The table shown in Table @ref(table1).</p>
-<!-- raw HTML omitted -->
+          <h2 class="blog-title">hellooooooooo</h2>
+          <img class="feature-image" src="/images/blog/blog-details-image.jpg" alt="blog-feature-image">
+          <p>hellooooo! :)</p>
 
         </article>
       </div>
