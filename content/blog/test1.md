@@ -46,18 +46,14 @@ data_wrangled <- covid_data_spain %>%
          daily_recovered = recovered - recovered_lag)
 ```
 
-```{r figure1, fig.cap="aaa"}
-data_wrangled %>%
-  select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered) %>%
-   datatable(escape = FALSE,
-            options = list(pageLength = 4,
-                          fnDrawCallback = htmlwidgets::JS(
-  '
-function(){
-  HTMLWidgets.staticRender();
-}
-')))
+```{r}
+data_table1 <- data_wrangled %>%
+  select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered)
 ```
 
-The table shown in Figure \@ref(fig:figure1).
+```{r table1, fig.cap="Table 1"}
+DT::datatable(data_table1, options = list(pageLength = 4))
+```
+The table shown in Table \@ref(table1).
 
+<div class="bg-white border-box" style="position:absolute;right:50px;bottom:50px;width:700px;padding:10px;">

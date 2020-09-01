@@ -2,7 +2,12 @@
 title: "COVID-19 Cases in Spain"
 author: "Helen Evangelina"
 date: "31/08/2020"
-output: html_document
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+output: 
+  blogdown::html_page:
+    fig_width: 6
+    dev: "svg"
 ---
 
 ```{r setup, include=FALSE}
@@ -18,6 +23,8 @@ library(zoo)
 library(ggplot2)
 library(kableExtra)
 library(DT)
+library(bookdown)
+library(blogdown)
 ```
 
 ```{r loading-data-spain}
@@ -39,12 +46,18 @@ data_wrangled <- covid_data_spain %>%
          daily_recovered = recovered - recovered_lag)
 ```
 
-```{r}
-data_table1 <- data_wrangled %>%
-  select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered)
+```{r figure1, fig.cap="aaa"}
+data_wrangled %>%
+  select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered) %>%
+   datatable(escape = FALSE,
+            options = list(pageLength = 4,
+                          fnDrawCallback = htmlwidgets::JS(
+  '
+function(){
+  HTMLWidgets.staticRender();
+}
+')))
 ```
 
-```{r}
-DT::datatable(data_table1, options = list(pageLength = 4))
-```
+The table shown in Figure \@ref(fig:figure1).
 

@@ -56,11 +56,31 @@
   </url>
   
   <url>
+    <loc>/blog/test1/</loc>
+  </url>
+  
+  <url>
     <loc>/blog/hehe/</loc>
   </url>
   
   <url>
     <loc>/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/plot/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/r-markdown/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/regression/</loc>
   </url>
   
   <url>

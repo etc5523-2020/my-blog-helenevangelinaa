@@ -6,18 +6,26 @@
     <description>Recent content in plot on Website Blog | Helen Evangelina</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2015 21:13:14 -0500</lastBuildDate>
     
 	<atom:link href="/tags/plot/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>/blog/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>COVID-19 Cases in Spain</title>
+      <link>/blog/blogpost1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2015-07-23-r-rmarkdown/</guid>
-      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.</description>
+      <guid>/blog/blogpost1/</guid>
+      <description>#installing package#devtools::install_github(&amp;quot;joachim-gassen/tidycovid19&amp;quot;)library(tidyverse)## -- Attaching packages --------------------- tidyverse 1.3.0 --## v ggplot2 3.3.2 v purrr 0.3.4## v tibble 3.</description>
+    </item>
+    
+    <item>
+      <title>COVID-19 Cases in Spain</title>
+      <link>/blog/test1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/test1/</guid>
+      <description>knitr::opts_chunk$set(echo = TRUE)#installing package#devtools::install_github(&amp;quot;joachim-gassen/tidycovid19&amp;quot;)library(tidyverse)library(tidycovid19)library(zoo)library(ggplot2)library(kableExtra)library(DT)library(bookdown)library(blogdown)covid_data_spain &amp;lt;- download_merged_data(cached = TRUE, silent = TRUE) %&amp;gt;%filter(country == &amp;quot;Spain&amp;quot;)Data Description The data is taken from https://github.</description>
     </item>
     
   </channel>
