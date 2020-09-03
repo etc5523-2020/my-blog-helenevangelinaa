@@ -1,7 +1,7 @@
 ---
 title: "State of COVID-19 Cases in Spain"
 author: "Helen Evangelina"
-date: "31/08/2020"
+date: '2020-09-01'
 image: images/blog/covidspain.jpg
 feature_image: images/blog/covidspain2.jpg
 categories: ["R"]
