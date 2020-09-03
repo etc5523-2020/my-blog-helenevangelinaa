@@ -22,7 +22,7 @@ summarylength = 25
 
 # Site Params
 [params]
-  dateFormat = "28 AUGUST 2020"
+  dateFormat = "3 SEPTEMBER 2020"
   # Meta data
   description = "Roxo Hugo themes | Design Agency Template by StaticMania"
   author = "StaticMania"
@@ -64,7 +64,7 @@ summarylength = 25
     [params.footer.contactInfo]
       title   = "Contact Info"
       phone   = "0481777655"
-      email   = "helenevangelina@yahoo.com"
+      email   = "heva0001@student.monash.edu"
       # Footer Social Media
       [params.footer.social]
         title   = "Social Media"
@@ -72,8 +72,8 @@ summarylength = 25
           name = "Facebook"
           url  = "https://www.facebook.com/helen.evangelina"
         [[params.footer.social.link]]
-          name = "Dribbble"
-          url  = "#"
+          name = "GitHub"
+          url  = "https://github.com/helenevangelinaa"
         [[params.footer.social.link]]
           name = "Instagram"
           url  = "https://www.instagram.com/helenevangelina/?hl=en"

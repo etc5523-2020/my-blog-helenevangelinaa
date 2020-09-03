@@ -10,6 +10,8 @@ output:
   blogdown::html_page:
     fig_width: 6
     dev: "svg"
+bibliography: references.bib
+biblio-style: authoryear-comp
 ---
 
 ```{r setup, include=FALSE}
@@ -163,7 +165,7 @@ sparkline_cor <- bind_cols(variablenames, cor_all, sparkline_combined) %>%
   spk_add_deps()
 
 sparkline_cor %>%
-  widgetframe::frameWidget(width = "700")
+  widgetframe::frameWidget(width = "700", height = "300")
 ```
 
 Figure \@ref(fig:apple-cor) is showing the result of the correlation test using _cor.test()_ function, constructed between the daily confirmed cases and the variables of Apple Maps usage. The estimate variable is showing the correlation between the two variables, and there is a sparkline on the last column to show the trend of the Apple Maps usage overtime. The correlations between daily cases and Apple Maps usage are all negative, however the correlations are low. Negative correlation is indicating that when the cases increases, the Apple Maps usage decreases. apple_mtr_driving has the lowest correlation and apple_mtr_transit has the highest. The correlation concludes that with the increasing cases, people tend to go out less (indicated by the less usage of Apple Maps). However, the effects are low as people are still having gatherings. From the TrendSparkline, we can see the decreasing usage of Apple Maps in all three variables around the middle, which is due to the three months lockdown that was implemented. The usage rises again after the restrictions was lifted as people started to go out. 
@@ -208,3 +210,8 @@ Following the increasing cases in March, Spain implemented lockdown. This lockdo
 
 --
 This blog is made with roxo-hugo from Blogdown, alongside with...
+
+## Achknowledgements
+@tidyverse
+
+## References
