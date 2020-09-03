@@ -1,7 +1,9 @@
 ---
-title: "COVID-19 Cases in Spain"
+title: "State of COVID-19 Cases in Spain"
 author: "Helen Evangelina"
 date: "31/08/2020"
+image: images/blog/covidspain.jpg
+feature_image: images/blog/covidspain2.jpg
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
 output: 
@@ -11,7 +13,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
 
 ```{r loading-packages}
@@ -25,15 +27,25 @@ library(kableExtra)
 library(DT)
 library(bookdown)
 library(blogdown)
+library(broom)
+library(sparkline)
+library(formattable)
+library(plotly)
+library(lubridate)
 ```
+
+Coronavirus Disease (COVID-19) has been a major issue since the virus spread worldwide from China's Hubei Province, and it is affecting life. We are looking at the COVID-19 pandemic in Spain. Spain has the second highest total confirmed cases in Europe after Russia, with a total of 479,554 confirmed cases and 29,194 deaths, as of 3 September 2020. With a population of around 46 million, Spain is one of the worst affected countries as Spain has less population than other European countries like Germany, United Kingdom, and France. 
 
 ```{r loading-data-spain}
 covid_data_spain <- download_merged_data(cached = TRUE, silent = TRUE) %>%
   filter(country == "Spain")
 ```
 
-## Data Description
-The data is taken from https://github.com/joachim-gassen/tidycovid19
+# Data Description
+
+The data is taken from the [tidycovid19](https://github.com/joachim-gassen/tidycovid19) package created by Joachim Gassen. The `tidycovid19` package was created to provide transparent access to various data sources. The dataset used is the merged dataset, which can be obtained by using the `download_merged_data` function. This merged dataset contains data of coronavirus cases (confirmed, recovered, death) originally collected and cleaned by [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19), alongside with some other variables such as apple_mtr_driving which is the Apple Maps usage for driving directions taken, as percentage*100 relative to the baseline of Jan 13, 2020, taken from [Apple Mobility Trends Report](https://covid19.apple.com/mobility). It also contains [Google Commmunity Mobility Reports](https://www.google.com/covid19/mobility/) data of the frequency places are being visited. 
+
+This blog will analyse Spain, whose observations start from January 1, 2020 tp August 31, 2020.
 
 ## Data Story
 ```{r wrangling-data}
@@ -46,12 +58,153 @@ data_wrangled <- covid_data_spain %>%
          daily_recovered = recovered - recovered_lag)
 ```
 
-```{r figure1, fig.cap="aaa", fig.fullwidth = TRUE}
+```{r explorationdata, fig.cap="Cumulative and daily confirmed, deaths, and recovered per day.", fig.align="centre"}
 data_wrangled %>%
   select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered) %>%
-  datatable(options = list(pageLength = 5)) %>% 
-  widgetframe::frameWidget()
+  datatable(options = list(pageLength = 5)) %>%
+  widgetframe::frameWidget(width = "700")
 ```
 
-The table shown in Figure \@ref(fig:figure1).
+Table \@ref(fig:explorationdata) is for user data exploration in where users can filter and sort the data. This table presents the date, total confirmed, deaths and recover, alongside with the daily confirmed cases, daily deaths and daily recovered.  
 
+```{r summary-plot, fig.cap="Summary of cumulative cases in Spain", fig.align="centre"}
+summaryplot <- data_wrangled %>%
+  ggplot() +
+  geom_line(aes(x = date,
+                y = confirmed,
+                color = "Confirmed")) +
+  geom_line(aes(x = date,
+                y = recovered,
+                color = "Recovered")) +
+  geom_line(aes(x = date,
+                y = deaths,
+                color = "Deaths")) +
+  ylab("Number of cases") +
+  xlab("Date") +
+  ggtitle("The cumulative cases of Spain")
+
+ggplotly(summaryplot)
+```
+
+```{r summary-daily-plot, fig.cap="Summary of daily cases in Spain.", fig.align="centre"}
+summarydailyplot <- data_wrangled %>%
+  ggplot() +
+  geom_line(aes(x = date,
+                y = daily_confirmed,
+                color = "Daily confirmed")) +
+  geom_line(aes(x = date,
+                y = daily_recovered,
+                color = "Daily recovered")) +
+  geom_line(aes(x = date,
+                y = daily_death,
+                color = "Daily deaths")) +
+  ylab("Number of cases") +
+  xlab("Date") +
+  ggtitle("The daily cases of Spain")
+
+ggplotly(summarydailyplot)
+```
+When looking at Figure \@ref(fig:summary-daily-plot), we might question how could the daily confirmed cases be negative on 24 April 2020? This might be due to an error in the documentation. If we compared the data with the dataset from [Our World in Data](https://ourworldindata.org/covid-cases), the cumulative cases in April 23 is still ranging around 20000, not 21000. However, rather than correcting the error, I decided to stick with the number from [tidycovid19](https://github.com/joachim-gassen/tidycovid19) package as the datasets have different numbers recorded. 
+
+An interesting thing to notice here is that the daily cases started to flatten around start of June, however it increased again in July and keeps increasing until now, indicating second wave. Spain were under lockdown for three months until late June. This lockdown seems to be effective as the cases went down in June. However, the cases started to rise again after the ending of state of emergency, being Europe's fastest-rising caseload. The virus is spreading even faster than in the United States (The New York Times, 2020).
+
+One of the reason for this increasing cases is because people were stuck in their homes for three months due to one of the strictest lockdown in Europe. Thus, when the lockdown was lifted, people started going out more and most of them were not wearing masks. There were many gatherings around Spain since then, including the 'non-festival' gathering of 400 young people in Tafalla (Badcock, 2020). Unsurprisingly, night life, street parties and family gatherings are said to be the greatest catalysts of the new outbreaks. The nightlife has been revived with looser restrictions than in other European countries. 
+
+With rising cases, the health minister  has ruled out a second lockdown, saying that it is unnecessary, as there is no comparison with the situation in March - the system is not overwhelmed. Due to the decision to not implement second lockdown, the daily cases keep rising and rising, showing a peak in August 31. 
+
+Despite the really high number of cases, why is the number of death so little? As seen from Figure \@ref(fig:summary-plot), the number of deaths is increasing overtime at a decreasing rate. An explanation for this is because Spain has great health care system. After the first lockdown, Spain has been preparing and it is now in a far stronger position to fight the virus. The testing speeds are accelerating,  _"It is not like the first wave"_ (The New York Times, 2020).
+
+Next, we want to see the relationship between COVID-19 cases with the usage of Apple Maps. Are people still going out (indicated by the usage of Apple Maps) despite the increasing cases? Is the lockdown effective?
+
+```{r cor-apple}
+cor_walking <-  cor.test(data_wrangled$daily_confirmed, data_wrangled$apple_mtr_walking, method = "pearson") %>%
+  tidy()
+
+cor_driving <-  cor.test(data_wrangled$daily_confirmed, data_wrangled$apple_mtr_driving, method = "pearson") %>%
+  tidy()
+
+cor_transit <-  cor.test(data_wrangled$daily_confirmed, data_wrangled$apple_mtr_transit, method = "pearson") %>%
+  tidy()
+
+variablenames <- tibble("variable" = c("apple_mtr_walking", "apple_mtr_driving", "apple_mtr_transit"))
+
+cor_all <- bind_rows(cor_walking, cor_driving, cor_transit) %>%
+  select(-method, -alternative, -parameter)
+
+```
+
+
+```{r apple-cor, fig.cap="sparkline"}
+driving_sparkline <- data_wrangled %>%
+  select(date, daily_confirmed, apple_mtr_driving) %>%
+  summarise(TrendSparkline = spk_chr(apple_mtr_driving))
+
+walking_sparkline <- data_wrangled %>%
+  select(date, daily_confirmed, apple_mtr_walking) %>%
+  summarise(TrendSparkline = spk_chr(apple_mtr_walking))
+
+transit_sparkline <- data_wrangled %>%
+  select(date, daily_confirmed, apple_mtr_transit) %>%
+  summarise(TrendSparkline = spk_chr(apple_mtr_transit))
+
+sparkline_combined <- bind_rows(walking_sparkline, driving_sparkline, transit_sparkline)
+
+sparkline_cor <- bind_cols(variablenames, cor_all, sparkline_combined) %>%
+  datatable(escape = FALSE,
+            filter = "top", 
+            options = list(paging = FALSE,
+                           fnDrawCallback = htmlwidgets::JS(
+                             '
+                             function(){
+                             HTMLWidgets.staticRender();
+                             }
+                             '
+                           ))) %>%
+  spk_add_deps()
+
+sparkline_cor %>%
+  widgetframe::frameWidget(width = "700")
+```
+
+Figure \@ref(fig:apple-cor) is showing the result of the correlation test using _cor.test()_ function, constructed between the daily confirmed cases and the variables of Apple Maps usage. The estimate variable is showing the correlation between the two variables, and there is a sparkline on the last column to show the trend of the Apple Maps usage overtime. The correlations between daily cases and Apple Maps usage are all negative, however the correlations are low. Negative correlation is indicating that when the cases increases, the Apple Maps usage decreases. apple_mtr_driving has the lowest correlation and apple_mtr_transit has the highest. The correlation concludes that with the increasing cases, people tend to go out less (indicated by the less usage of Apple Maps). However, the effects are low as people are still having gatherings. From the TrendSparkline, we can see the decreasing usage of Apple Maps in all three variables around the middle, which is due to the three months lockdown that was implemented. The usage rises again after the restrictions was lifted as people started to go out. 
+
+The same process is also done with the Google Community Mobility Reports data to discover the relationship between the confirmed daily cases and the frequency of people visiting places.
+```{r google-cor}
+data_omit <- data_wrangled %>%
+  select(date, daily_confirmed, gcmr_retail_recreation, gcmr_grocery_pharmacy, gcmr_parks, gcmr_residential, gcmr_transit_stations, gcmr_workplaces) %>%
+  na.omit()
+
+retailrec <- cor.test(data_omit$daily_confirmed, data_omit$gcmr_retail_recreation, method = "pearson") %>%
+  tidy()
+grophar <- cor.test(data_omit$daily_confirmed, data_omit$gcmr_grocery_pharmacy, method = "pearson") %>%
+  tidy()
+parks <- cor.test(data_omit$daily_confirmed, data_omit$gcmr_parks, method = "pearson") %>%
+  tidy()
+residential <- cor.test(data_omit$daily_confirmed, data_omit$gcmr_residential, method = "pearson") %>%
+  tidy()
+transit <- cor.test(data_omit$daily_confirmed, data_omit$gcmr_transit_stations, method = "pearson") %>%
+  tidy()
+work <- cor.test(data_omit$daily_confirmed, data_omit$gcmr_workplaces, method = "pearson") %>%
+  tidy()
+
+cor_gcmr <- bind_rows(retailrec, grophar, parks, residential, transit, work)
+
+gcmr_var <- tibble("variable" = c("gcmr_retail_recreation", "gcmr_grocery_pharmacy", "gcmr_parks", "gcmr_residential", "gcmr_transit_stations", "gcmr_workplaces"))
+
+gcmr_final <- bind_cols(gcmr_var, cor_gcmr) %>%
+  select(variable, estimate) %>%
+  rename("correlation" = "estimate")
+```
+
+```{r google-table}
+gcmr_final %>%
+  formattable(list(area(col = 2) ~ color_tile("#F5B7B1", "#7DCEA0"))) %>%
+  kable_styling(bootstrap_options = c("bordered","striped", "hover"))
+```
+All of the variables, except for gcmr_residential, seems to have low negative correlations with the confirmed daily cases. This aligns with the previous conclusion that with the rising cases, people go out less. One interesting thing here is the positive correlation of gcmr_residential. An explanation for this might be because with the increasing cases, people are scared of going out, therefore they visit their friends or relatives in their homes.
+
+## Conclusion
+Following the increasing cases in March, Spain implemented lockdown. This lockdown seems to be successful in flattening the curve. However, as soon as the restrictions were being lifted in late June and the country went back to "normal" situation where people started to go out, the cases started to increase again. Due to the decision to not implement second lockdown, the daily cases keep rising and rising, showing a peak in August 31. 
+
+--
+This blog is made with roxo-hugo from Blogdown, alongside with...

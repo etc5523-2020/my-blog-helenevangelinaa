@@ -62,21 +62,12 @@ The watch has the following features:</description>
     </item>
     
     <item>
-      <title>COVID-19 Cases in Spain</title>
+      <title>State of COVID-19 Cases in Spain</title>
       <link>/blog/blogpost1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/blog/blogpost1/</guid>
-      <description>#installing package#devtools::install_github(&amp;quot;joachim-gassen/tidycovid19&amp;quot;)library(tidyverse)## -- Attaching packages ----------## v ggplot2 3.3.2 v purrr 0.3.4## v tibble 3.0.3 v dplyr 1.</description>
-    </item>
-    
-    <item>
-      <title>hellooooooooo</title>
-      <link>/blog/hehe/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/hehe/</guid>
-      <description>hellooooo! :)</description>
+      <description>Coronavirus Disease (COVID-19) has been a major issue since the virus spread worldwide from China’s Hubei Province, and it is affecting life.</description>
     </item>
     
   </channel>

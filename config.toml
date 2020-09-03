@@ -22,16 +22,11 @@ summarylength = 25
 
 # Site Params
 [params]
-  logo = "images/helen.png"
   dateFormat = "28 AUGUST 2020"
   # Meta data
   description = "Roxo Hugo themes | Design Agency Template by StaticMania"
   author = "StaticMania"
-  # Google Analitycs
-  googleAnalitycsID = "Your ID"
-  # We're using formspree.io for form handling, paste your formspree url below
-  formspreeFormUrl  = "https://formspree.io/myykjpje"
-  
+ 
   # Navbar Action Button
   [params.navAction]
     status  = false
@@ -42,9 +37,9 @@ summarylength = 25
   # Banner Section
   [params.banner]
     enable                = true
-    background_image      = "images/backgrounds/hero-background.jpg"
+    background_image      = "images/blog/background.jpg"
     heading               = "Helen Evangelina's Blog"
-    tagline               = "WE WORK HARD, WE PLAY HARD"
+    tagline               = ""
     primary_button        = "See My Profile"
     primary_button_url    = "about"
     secondary_button      = "My Blog Posts"
@@ -68,21 +63,18 @@ summarylength = 25
     # Footer Contact Info
     [params.footer.contactInfo]
       title   = "Contact Info"
-      phone   = "00000000"
+      phone   = "0481777655"
       email   = "helenevangelina@yahoo.com"
       # Footer Social Media
       [params.footer.social]
         title   = "Social Media"
         [[params.footer.social.link]]
-          name = "Medium"
-          url  = "#"
-        [[params.footer.social.link]]
-          name = "Behance"
-          url  = "#"
+          name = "Facebook"
+          url  = "https://www.facebook.com/helen.evangelina"
         [[params.footer.social.link]]
           name = "Dribbble"
           url  = "#"
         [[params.footer.social.link]]
           name = "Instagram"
-          url  = "#"
+          url  = "https://www.instagram.com/helenevangelina/?hl=en"
     
