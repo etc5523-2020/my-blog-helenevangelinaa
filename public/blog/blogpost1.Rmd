@@ -48,7 +48,12 @@ covid_data_spain <- download_merged_data(cached = TRUE, silent = TRUE) %>%
 
 The data is taken from the [tidycovid19](https://github.com/joachim-gassen/tidycovid19) package created by Joachim Gassen. The `tidycovid19` package was created to provide transparent access to various data sources. The dataset used is the merged dataset, which can be obtained by using the `download_merged_data` function. This merged dataset contains data of coronavirus cases (confirmed, recovered, death) originally collected and cleaned by [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19), alongside with some other variables such as apple_mtr_driving which is the Apple Maps usage for driving directions taken, as percentage*100 relative to the baseline of Jan 13, 2020, taken from [Apple Mobility Trends Report](https://covid19.apple.com/mobility). It also contains [Google Commmunity Mobility Reports](https://www.google.com/covid19/mobility/) data of the frequency places are being visited. 
 
-This blog will analyse Spain, whose observations start from January 1, 2020 tp August 31, 2020.
+This blog will analyse Spain, whose observations start from January 1, 2020 to August 31, 2020. There are 35 variables and 266 observations in the original dataset for Spain. Important variables in this dataset are:  
+-  **confirmed**: Confirmed Covid-19 cases as reported by JHU CSSE (accumulated)  
+-  **deaths**: Covid-19-related deaths as reported by JHU CSSE (accumulated)  
+-  **recovered**: Covid-19 recoveries as reported by JHU CSSE (accumulated)
+-  **apple_mtr_driving**: Apple Maps usage for driving directions, as percentage*100 relative to the baseline of Jan 13, 2020 (similar description for other `appl_mtr` variables)  
+- **gcmr_retail_recreation**: Google Community Mobility Reports data for the frequency that people visit retail and recreation places expressed as a percentage*100 change relative to the baseline period Jan 3 - Feb 6, 2020 (similar description for other `gcmr` variables)
 
 # Data Story
 ```{r wrangling-data}
