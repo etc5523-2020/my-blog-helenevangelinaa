@@ -38,8 +38,8 @@ summarylength = 25
   [params.banner]
     enable                = true
     background_image      = "images/blog/background.jpg"
-    heading               = "Helen Evangelina's Blog"
-    tagline               = ""
+    heading               = "Welcome to My Blog! :)"
+    tagline               = "Helen Evangelina's Blog"
     primary_button        = "See My Profile"
     primary_button_url    = "about"
     secondary_button      = "My Blog Posts"
@@ -58,7 +58,7 @@ summarylength = 25
     primary_button_url  = "contact"
     secondary_button    = "Not Convinced"
     secondary_button_url = "portfolio"
-
+    
   [params.footer]
     # Footer Contact Info
     [params.footer.contactInfo]

@@ -37,7 +37,7 @@ library(plotly)
 library(lubridate)
 ```
 
-Coronavirus Disease (COVID-19) has been a major issue since the virus spread worldwide from China's Hubei Province, and it is affecting life. We are looking at the COVID-19 pandemic in Spain. Spain has the second highest total confirmed cases in Europe after Russia, with a total of 479,554 confirmed cases and 29,194 deaths, as of 3 September 2020. With a population of around 46 million, Spain is one of the worst affected countries as Spain has less population than other European countries like Germany, United Kingdom, and France. 
+Coronavirus Disease (COVID-19) has been a major issue since the virus spread worldwide from China's Hubei Province, and it is affecting life. This post will be talking about overview of the COVID-19 pandemic in Spain. Spain has the second highest total confirmed cases in Europe after Russia, with a total of 479,554 confirmed cases and 29,194 deaths, as of 3 September 2020. With a population of around 46 million, Spain is one of the worst affected countries as Spain has less population than other European countries like Germany, United Kingdom, and France. 
 
 ```{r loading-data-spain}
 covid_data_spain <- download_merged_data(cached = TRUE, silent = TRUE) %>%
@@ -70,7 +70,15 @@ data_wrangled %>%
   select(date, confirmed, deaths, recovered, daily_confirmed, daily_death, daily_recovered) %>%
   datatable(filter = 'top', 
     rownames = FALSE,
-    options = list(pageLength = 5)) %>%
+    options = list(pageLength = 5,
+                   fnDrawCallback = htmlwidgets::JS(
+ "function(settings, json) {",
+    "$(this.api().table().header()).css({'font-size': '15px', 'background-color': '#FAA2AD'});",
+    "$(this.api().tables().body()).css({'font-size': '14px'});",
+ 
+    "}"
+)
+       )) %>%
   formatStyle('daily_confirmed',
               backgroundColor = styleInterval(brks, clrs)) %>%
   widgetframe::frameWidget(width = "800")
@@ -167,6 +175,13 @@ sparkline_cor <- bind_cols(variablenames, cor_all, sparkline_combined) %>%
             rownames = FALSE,
             options = list(paging = FALSE,
                            fnDrawCallback = htmlwidgets::JS(
+ "function(settings, json) {",
+    "$(this.api().table().header()).css({'font-size': '15px', 'background-color': '#FAA2AD'});",
+    "$(this.api().tables().body()).css({'font-size': '14px'});",
+ 
+    "}"
+),
+                           fnDrawCallback = htmlwidgets::JS(
                              '
                              function(){
                              HTMLWidgets.staticRender();
@@ -219,7 +234,7 @@ gcmr_final %>%
 All of the variables, except for gcmr_residential, seems to have low negative correlations with the confirmed daily cases. This aligns with the previous conclusion that with the rising cases, people go out less. One interesting thing here is the positive correlation of gcmr_residential. An explanation for this might be because with the increasing cases, people are scared of going out, therefore they visit their friends or relatives in their homes.
 
 # Conclusion
-Following the increasing cases in March, Spain implemented lockdown. This lockdown seems to be successful in flattening the curve. However, as soon as the restrictions were being lifted in late June and the country went back to "normal" situation where people started to go out, the cases started to increase again. Due to the decision to not implement second lockdown, the daily cases keep rising and rising, showing a peak in August 31. 
+Following the increasing cases in March, Spain implemented lockdown. This lockdown seems to be successful in flattening the curve. However, as soon as the restrictions were being lifted in late June and the country went back to "normal" situation where people started to go out, the cases started to increase again. Due to the decision to not implement second lockdown, the daily cases keep rising and rising, showing a peak in August 31. And if the government does not take any actions now, the cases will keep rising in the future.
 
 
 ```{css, echo = FALSE}
@@ -227,26 +242,18 @@ Following the increasing cases in March, Spain implemented lockdown. This lockdo
 html, body, p {
   
   font-size: 16px;
-  color: black;
+  color: #333333;
    text-align: justify;
 }
 
 html, body, div, h1 {
   
   font-size: 22px;
-  color: black;
+  color: gray16;
 }
 
 th, td {
     font-size: 16px;
-}
-
-table.dataTable thead tr {
-  background-color: pink2;
-}
-
-div, iframe{
-  font-size: smaller;
 }
 ```
 
