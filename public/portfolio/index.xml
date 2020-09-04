@@ -2,61 +2,61 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>We build better &lt;span&gt;products&lt;/span&gt; to help our clients build better &lt;span&gt;companies&lt;/span&gt; on Website Blog | Helen Evangelina</title>
-    <link>http://example.org/portfolio/</link>
+    <link>/portfolio/</link>
     <description>Recent content in We build better &lt;span&gt;products&lt;/span&gt; to help our clients build better &lt;span&gt;companies&lt;/span&gt; on Website Blog | Helen Evangelina</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 23 Dec 2019 16:48:28 +0600</lastBuildDate>
     
-	<atom:link href="http://example.org/portfolio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>KIO-TAPE BRAND</title>
-      <link>http://example.org/portfolio/kio-tape-2/</link>
+      <link>/portfolio/kio-tape-2/</link>
       <pubDate>Mon, 23 Dec 2019 20:56:42 +0600</pubDate>
       
-      <guid>http://example.org/portfolio/kio-tape-2/</guid>
+      <guid>/portfolio/kio-tape-2/</guid>
       <description>The “Seamless Watch” watch has all the features that users expect in a digital watch, and some unusual features.
 The watch has the following features:</description>
     </item>
     
     <item>
       <title>USE-LESS BRAND</title>
-      <link>http://example.org/portfolio/use-less-brand/</link>
+      <link>/portfolio/use-less-brand/</link>
       <pubDate>Mon, 23 Dec 2019 15:58:10 +0600</pubDate>
       
-      <guid>http://example.org/portfolio/use-less-brand/</guid>
+      <guid>/portfolio/use-less-brand/</guid>
       <description>The “Seamless Watch” watch has all the features that users expect in a digital watch, and some unusual features.
 The watch has the following features:</description>
     </item>
     
     <item>
       <title>OSEN CLOCK</title>
-      <link>http://example.org/portfolio/osen-clock/</link>
+      <link>/portfolio/osen-clock/</link>
       <pubDate>Mon, 23 Dec 2019 15:56:43 +0600</pubDate>
       
-      <guid>http://example.org/portfolio/osen-clock/</guid>
+      <guid>/portfolio/osen-clock/</guid>
       <description>The “Seamless Watch” watch has all the features that users expect in a digital watch, and some unusual features.
 The watch has the following features:</description>
     </item>
     
     <item>
       <title>SEAMLESS WATCH</title>
-      <link>http://example.org/portfolio/seamless-watch/</link>
+      <link>/portfolio/seamless-watch/</link>
       <pubDate>Mon, 23 Dec 2019 15:55:44 +0600</pubDate>
       
-      <guid>http://example.org/portfolio/seamless-watch/</guid>
+      <guid>/portfolio/seamless-watch/</guid>
       <description>The “Seamless Watch” watch has all the features that users expect in a digital watch, and some unusual features.
 The watch has the following features:</description>
     </item>
     
     <item>
       <title>KIO TAPE</title>
-      <link>http://example.org/portfolio/kio-tape/</link>
+      <link>/portfolio/kio-tape/</link>
       <pubDate>Mon, 23 Dec 2019 15:44:46 +0600</pubDate>
       
-      <guid>http://example.org/portfolio/kio-tape/</guid>
+      <guid>/portfolio/kio-tape/</guid>
       <description>The “Seamless Watch” watch has all the features that users expect in a digital watch, and some unusual features.
 The watch has the following features:</description>
     </item>
