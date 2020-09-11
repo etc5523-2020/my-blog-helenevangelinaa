@@ -1,0 +1,122 @@
+---
+title: "State of COVID-19 Cases in Ecuador"
+author: "Helen Evangelina"
+date: '2020-09-11'
+image: images/blog/covidspain.jpg
+feature_image: images/blog/covidspain2.jpg
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+output: 
+  blogdown::html_page:
+    fig_width: 6
+    dev: "svg"
+bibliography: references.bib
+biblio-style: authoryear-comp
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r loading-packages}
+#installing package
+# install.packages("devtools")
+#devtools::install_github("RamiKrispin/coronavirus")
+library(tidyverse)
+library(coronavirus)
+library(ggplot2)
+library(plotly)
+library(lubridate)
+```
+
+```{r loading-data-spain}
+covid_data_ecuador <- coronavirus %>%
+  filter(country == "Ecuador")
+```
+
+# Data Description
+
+The data is taken from the [coronavirus](https://github.com/RamiKrispin/coronavirus) package created by
+
+# Data Story
+```{r wrangling-data}
+ecuador_wrangled <- covid_data_ecuador %>%
+  filter(date < '2020-09-06') %>%
+  group_by(type, date) %>%
+  summarise(total = sum(cases)) %>%
+  pivot_wider(names_from = type, 
+              values_from = total) %>%
+  arrange(date) %>%
+  rename(daily_confirmed = confirmed,
+         daily_death = death,
+         daily_recovered = recovered) %>%
+  mutate(total_confirmed = cumsum(daily_confirmed),
+         total_death = cumsum(daily_death),
+         total_recovered = cumsum(daily_recovered))
+```
+
+
+```{r summary-plot, fig.cap="Summary of cumulative cases in Ecuador", fig.align="centre"}
+summaryplot <- ecuador_wrangled %>%
+  ggplot() +
+  geom_line(aes(x = date,
+                y = total_confirmed,
+                color = "Total Confirmed")) +
+  geom_line(aes(x = date,
+                y = total_recovered,
+                color = "Recovered")) +
+  geom_line(aes(x = date,
+                y = total_death,
+                color = "Deaths")) +
+  ylab("Number of cases") +
+  xlab("Date") +
+  ggtitle("The cumulative cases of Ecuador")
+
+ggplotly(summaryplot)
+```
+
+```{r summary-daily-plot, fig.cap="Summary of daily cases in Ecuador.", fig.align="centre"}
+summarydailyplot <- ecuador_wrangled %>%
+  ggplot() +
+  geom_line(aes(x = date,
+                y = daily_confirmed,
+                color = "Daily confirmed")) +
+  geom_line(aes(x = date,
+                y = daily_recovered,
+                color = "Daily recovered")) +
+  geom_line(aes(x = date,
+                y = daily_death,
+                color = "Daily deaths")) +
+  ylab("Number of cases") +
+  xlab("Date") +
+  ggtitle("The daily cases of Ecuador")
+
+ggplotly(summarydailyplot)
+# add text in the plot to show number of cases
+```
+
+
+```{css, echo = FALSE}
+
+html, body, p {
+  
+  font-size: 16px;
+  color: #333333;
+   text-align: justify;
+}
+
+html, body, div, h1 {
+  
+  font-size: 22px;
+  color: gray16;
+}
+
+th, td {
+    font-size: 16px;
+}
+```
+
+# Achknowledgements
+This blog is made with [roxo-hugo](https://github.com/StaticMania/roxo-hugo) theme of Blogdown (@blogdown), alongside with R packages @tidyverse, @tidycovid, @zoo, @ggplot2, @kableExtra, @DT, @bookdown, @broom, @sparkline, @formattable, @lubridate, and @plotly.
+
+# References
