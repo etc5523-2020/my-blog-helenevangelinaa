@@ -1,0 +1,275 @@
+---
+title: "State of COVID-19 Cases in Egypt"
+author: "Helen Evangelina"
+date: '2020-09-11'
+image: images/blog/covidspain.jpg
+feature_image: images/blog/covidspain2.jpg
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+output: 
+  blogdown::html_page:
+    fig_width: 6
+    dev: "svg"
+bibliography: references.bib
+biblio-style: authoryear-comp
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r loading-packages}
+#installing package
+# install.packages("devtools")
+#devtools::install_github("RamiKrispin/coronavirus")
+library(tidyverse)
+library(coronavirus)
+library(ggplot2)
+library(plotly)
+library(lubridate)
+library(readxl)
+library(ggrepel)
+```
+
+COVID-19 pandemic has been declared as a Public Health Emergency of International Concern by the World Health Organisation. It has been a global issue since the first outbreak from China's Hubei Province, and it is destroying economies worldwide. “The economic warning signs are here and we have already seen the pandemic’s immediate impact on employment levels, household income, industry operations, and supply chains” (Chaiechi, 2020). Therefore, this blog post will look at the COVID-19 state in Egypt and then look at how the economy is affected by looking at stock prices.
+
+Egypt has ... cases, .. deaths as of 
+
+```{r loading-data-spain}
+coronavirus <- coronavirus
+#filtering to egypt data
+covid_data_egypt <- coronavirus %>%
+  filter(country == "Egypt")
+```
+
+# Data Description
+
+There are two data being used here. The COVID-19 data is taken from the [coronavirus](https://github.com/RamiKrispin/coronavirus) package created by Rami Krispin. This package provides a tidy data format of COVID-19 pandemic, which uses the raw data taken from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository. This dataset contains 182,120 rows and 7 columns. However, this blog post will only analyse Egypt, whose observations start from January 22, 2020 to September 9, 2020 with 696 rows and 7 columns. This dataset contains the following variables:
+-  **date**: date of observations
+
+?? do this or nah?
+
+-  **confirmed**: Confirmed Covid-19 cases as reported by JHU CSSE (accumulated)  
+-  **deaths**: Covid-19-related deaths as reported by JHU CSSE (accumulated)  
+-  **recovered**: Covid-19 recoveries as reported by JHU CSSE (accumulated)
+-  **apple_mtr_driving**: Apple Maps usage for driving directions, as percentage
+
+The second dataset being used here is a stock prices dataset, which is taken from [Investing website](https://www.investing.com/indices/egx30). Here, the monthly data for each of the companies listed in EGX30 index are taken one by one and then combined together into one dataset. This dataset contains monthly average stock prices for companies listed in EGX30 from June 2019 to September 2020 which consists of 448 rows and 10 columns.
+
+
+# The Unexplained Flattening of the Curve
+```{r wrangling-data}
+egypt_wrangled <- covid_data_egypt %>%
+  group_by(type, date) %>%
+  summarise(total = sum(cases)) %>%
+  pivot_wider(names_from = type, 
+              values_from = total) %>%
+  arrange(date) %>%
+  rename(daily_confirmed = confirmed,
+         daily_death = death,
+         daily_recovered = recovered) %>%
+  mutate(total_confirmed = cumsum(daily_confirmed),
+         total_death = cumsum(daily_death),
+         total_recovered = cumsum(daily_recovered))
+```
+
+
+```{r cumulative-plot, fig.cap="Summary of cumulative cases in Egypt", fig.align="centre"}
+egypt_wrangled %>%
+  ggplot() +
+  geom_line(aes(x = date,
+                y = total_confirmed,
+                color = "Total Confirmed"),
+            size = 1.5) +
+  geom_line(aes(x = date,
+                y = total_recovered,
+                color = "Recovered"),
+            size = 1.5) +
+  geom_line(aes(x = date,
+                y = total_death,
+                color = "Deaths"),
+            size = 1.5) +
+  scale_color_manual(values = c("red", "turquoise", "rosybrown1")) +
+  #scale_color_brewer(palette = "Dark2") +
+ annotate("text", 
+          xmin = as.Date("2020-01-22", "%Y-%m-%d"), 
+          xmax = as.Date("2020-09-20",  "%Y-%m-%d"),
+          x = as.Date("2020-09-10"), 
+          y = 86000, label = "Recovered",
+          color = "white") +
+  annotate("text", 
+          xmin = as.Date("2020-01-22", "%Y-%m-%d"), 
+          xmax = as.Date("2020-09-20",  "%Y-%m-%d"),
+          x = as.Date("2020-09-10"), 
+          y = 105000, label = "Confirmed",
+          color = "white") +
+    annotate("text", 
+          xmin = as.Date("2020-01-22", "%Y-%m-%d"), 
+          xmax = as.Date("2020-09-20",  "%Y-%m-%d"),
+          x = as.Date("2020-09-10"), 
+          y = 1000, label = "Death",
+          color = "white") +
+  labs(x = "Date",
+       y = "Total number of cases",
+       title = "Cumulative cases of Egypt") +
+   theme(panel.background = element_rect(fill = "black"),
+        plot.background = element_rect(fill = "black"),
+panel.grid.major = element_blank(),
+        panel.grid.minor = element_line(linetype = "dotted"),
+        plot.title.position = "plot",
+        legend.position = "none",
+        text = element_text(size = 16, color = "white"),
+        axis.text = element_text(color = "white"),
+        axis.line.x = element_line(color = "white",
+                                  size = 0.6),
+axis.line.y = element_line(color = "white",
+                           size = 0.6)) +
+  guides(color = FALSE)
+```
+Being Arab world’s most populous country, Egypt has a relatively low total cases of COVID-19 compared to the other countries. Figure \@ref(fig:cummulative-plot) is showing the trend of cumulative cases of COVID-19 overtime in Egypt. From this graph, it can be seen that the cumulative confirmed cases are increasing in a decreasing rate. The line is flattening overtime, which shows that Egypt is doing a good job in dealing with the cases. In contrast to the confirmed cases, the recovered cases are increasing in an increasing rate, to the point that the number of people recovered almost reaches the number of total confirmed cases - showing that there are only a few active cases left in Egypt. Egypt also has a very low death rate.
+
+```{r egypt-daily-curve, fig.cap= "Daily confirmed cases in Egypt which is showing a flattening of the curve.", fig.align="centre"}
+egypt_daily <- egypt_wrangled %>%
+  ggplot(aes(x = date,
+             y = daily_confirmed)) +
+  geom_col(fill = "rosybrown1") +
+  geom_line(size = 0, alpha = 0) +
+  geom_smooth(color = "red", size = 1) +
+    labs(x ="Date",
+       y = "Daily confirmed cases",
+       title = "Daily confirmed cases in Egypt") +
+  theme(panel.background = element_rect(fill = "grey16"),
+        plot.background = element_rect(fill = "grey16"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(color = "white"),
+        axis.text = element_text(color = "white"),
+        axis.line.x = element_line(linetype = "dashed", 
+                                  color = "white",
+                                  size = 0.6)) +
+  annotate(geom = "pointrange",
+           x = as.Date("2020-03-24"), 
+           xmin = as.Date("2020-03-24"),
+           xmax = as.Date("2020-03-24"),
+           y = 10,
+           color = "turquoise",
+           size = 1,
+           pch = 8) +
+  annotate(geom = "curve",
+           x = as.Date("2020-03-24"),
+           y = 500,
+           xend = as.Date("2020-03-24"),
+           yend = 20,
+           color = "turquoise") +
+  annotate(geom = "text",
+           x = as.Date("2020-03-24"),
+           y = 600,
+           label = "Lockdown implemented",
+           color = "turquoise", 
+           size = 3) +
+   annotate(geom = "pointrange",
+           x = as.Date("2020-06-27"), 
+           xmin = as.Date("2020-06-27"),
+           xmax = as.Date("2020-06-27"),
+           y = 1200,
+           color = "turquoise",
+           size = 1,
+           pch = 8) +
+  annotate(geom = "curve",
+           x = as.Date("2020-07-10"),
+           y = 1450,
+           xend = as.Date("2020-06-27"),
+           yend = 1200,
+           color = "turquoise") +
+  annotate(geom = "text",
+           x = as.Date("2020-08-10"),
+           y = 1500,
+           label = "Restrictions eased",
+           color = "turquoise", 
+           size = 3)
+
+
+egypt_daily
+
+```
+Figure \@ref(fig:egypt-daily-curve) illustrates the confirmed daily cases in Egypt. The red line is showing the overall summary of how the daily confirmed cases is changing. Egypt has a very low daily confirmed cases at the beginning of the year until it started increasing sharply in May and peaked on June 19, reaching 1774 cases. The low numbers at the beginning of the outbreak were feared by many that these numbers may not fully represented the actual nnumber of cases due to the limited numbers of administered tests (https://egyptianstreets.com/2020/09/07/newsflash-covid-19-isnt-over-guide-to-the-state-of-the-pandemic-in-egypt/). 
+
+As the cases began to increase, Egypt implemented a nationwide curfew starting March 24 as Shops were closed from five pm to six am and restaurants, cafes, bars, tourists sites, airports and schools were shut down. An interesting here is the restrictions was eased on June 27 when the number of cases showed no sign of plummeting. Surprisingly, the number of cases started to plateau in early July. There has not been an established explanation of this, but there have been speculations such as vaccines for other diseases that are still obligatory in Egypt helped in developing stronger immunity and that Egyptians have developed a hard immunity. However, as the easing of measures is parallel to the plateau of the daily confirmed cases in Egypt, it is unlikely that the plateau is a reasult of the measures implemented. Looking at the figure, there is an increasing cases again recently after the promising drop, leading to a concern of the coming of second wave.
+
+# The Effect of COVID-19 Cases to Stock Prices
+
+```{r wrangling-stockdata}
+stockdata <- read_excel("stockdata.xlsx")  %>%
+  mutate(dateformat = as.Date(Date),
+         month = month(dateformat)) 
+```
+
+```{r stock-movement, fig.cap="Movement of stcok prices in Egypt."}
+stockdata %>%
+  ggplot(aes(x = as.Date(Date),
+            y = log(Price))) +
+  geom_line(aes(group = Company),
+            color ="rosybrown1",
+            alpha = 0.5) +
+  stat_summary(fun = "mean", 
+               color ="red",
+               geom = "line",
+               size = 1.5) +
+  labs(title = "Stock prices movement in Egypt", 
+       x = "Date",
+       y = "Stock Prices (in log of price)") +
+  theme(panel.background = element_rect(fill = "grey16"),
+        plot.background = element_rect(fill = "grey16"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(color = "white"),
+        axis.text = element_text(color = "white"),
+        axis.line.y = element_line(color = "white",
+                                   size = 0.6),
+        axis.line.x = element_line(color = "white",
+                                  size = 0.6)) +
+  annotate("text", 
+          xmin = as.Date("2019-06-01", "%Y-%m-%d"),
+          xmax = as.Date("2020-10-01", "%Y-%m-%d"),
+          x = as.Date("2020-10-01"), 
+          y = 1.8, label = "average prices",
+          color = "red") +
+  scale_x_date(date_labels = "%Y-%m-%d")
+
+ggplotly()
+```
+
+EGX30 is,.
+Looking at Figure
+it was going pretty steady (with a bit of increasing and decreasing), it dropped sharply in march
+
+
+eventho there are some variabilities in the stock movements, all of the stock prices dropped 
+
+
+```{css, echo = FALSE}
+
+html, body, p {
+  
+  font-size: 16px;
+  color: #333333;
+   text-align: justify;
+}
+
+html, body, div, h1 {
+  
+  font-size: 22px;
+  color: gray16;
+}
+
+th, td {
+    font-size: 16px;
+}
+```
+
+# Achknowledgements
+This blog is made with [roxo-hugo](https://github.com/StaticMania/roxo-hugo) theme of Blogdown (@blogdown), alongside with R packages @tidyverse, @tidycovid, @zoo, @ggplot2, @kableExtra, @DT, @bookdown, @broom, @sparkline, @formattable, @lubridate, and @plotly.
+
+# References
