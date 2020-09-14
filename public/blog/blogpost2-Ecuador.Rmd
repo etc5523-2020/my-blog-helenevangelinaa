@@ -1,0 +1,219 @@
+---
+title: "State of COVID-19 Cases in Egypt"
+author: "Helen Evangelina"
+date: '2020-09-11'
+image: images/blog/covidspain.jpg
+feature_image: images/blog/covidspain2.jpg
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+output: 
+  blogdown::html_page:
+    fig_width: 6
+    dev: "svg"
+bibliography: references.bib
+biblio-style: authoryear-comp
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r loading-packages}
+#installing package
+# install.packages("devtools")
+#devtools::install_github("RamiKrispin/coronavirus")
+library(tidyverse)
+library(coronavirus)
+library(ggplot2)
+library(plotly)
+library(lubridate)
+library(readxl)
+library(ggrepel)
+```
+
+```{r loading-data-spain}
+covid_data_egypt <- coronavirus %>%
+  filter(country == "Egypt")
+```
+
+# Data Description
+
+The data is taken from the [coronavirus](https://github.com/RamiKrispin/coronavirus) package created by
+
+# Data Story
+```{r wrangling-data}
+egypt_wrangled <- covid_data_egypt %>%
+  group_by(type, date) %>%
+  summarise(total = sum(cases)) %>%
+  pivot_wider(names_from = type, 
+              values_from = total) %>%
+  arrange(date) %>%
+  rename(daily_confirmed = confirmed,
+         daily_death = death,
+         daily_recovered = recovered) %>%
+  mutate(total_confirmed = cumsum(daily_confirmed),
+         total_death = cumsum(daily_death),
+         total_recovered = cumsum(daily_recovered))
+```
+
+
+```{r summary-plot, fig.cap="Summary of cumulative cases in Egypt", fig.align="centre"}
+summaryplot <- egypt_wrangled %>%
+  ggplot() +
+  geom_line(aes(x = date,
+                y = total_confirmed,
+                color = "Total Confirmed"),
+            size = 1.5) +
+  geom_line(aes(x = date,
+                y = total_recovered,
+                color = "Recovered"),
+            size = 1.5) +
+  geom_line(aes(x = date,
+                y = total_death,
+                color = "Deaths"),
+            size = 1.5) +
+  scale_color_brewer(palette = "Dark2") +
+ annotate("text", 
+          xmin = as.Date("2020-01-22", "%Y-%m-%d"), 
+          xmax = as.Date("2020-09-20",  "%Y-%m-%d"),
+          x = as.Date("2020-09-10"), 
+          y = 86000, label = "Recovered",
+          color = "white") +
+  annotate("text", 
+          xmin = as.Date("2020-01-22", "%Y-%m-%d"), 
+          xmax = as.Date("2020-09-20",  "%Y-%m-%d"),
+          x = as.Date("2020-09-10"), 
+          y = 105000, label = "Confirmed",
+          color = "white") +
+    annotate("text", 
+          xmin = as.Date("2020-01-22", "%Y-%m-%d"), 
+          xmax = as.Date("2020-09-20",  "%Y-%m-%d"),
+          x = as.Date("2020-09-10"), 
+          y = 1000, label = "Death",
+          color = "white") +
+  labs(x = "Date",
+       y = "Total number of cases",
+       title = "Cumulative cases of Egypt") +
+   theme(panel.background = element_rect(fill = "black"),
+        plot.background = element_rect(fill = "black"),
+        #panel.grid.major = element_blank(),
+       # panel.grid.minor = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(size = 16, color = "white"),
+        axis.text = element_text(color = "white"),
+        axis.line.x = element_line(linetype = "dashed", 
+                                  color = "white",
+                                  size = 0.6)) +
+  guides(color = FALSE)
+
+summaryplot
+```
+
+```{r summary-daily-plot, fig.cap="Summary of daily cases in Egypt.", fig.align="centre"}
+summarydailyplot <- egypt_wrangled %>%
+  ggplot() +
+  geom_line(aes(x = date,
+                y = daily_confirmed,
+                color = "Daily confirmed")) +
+  geom_line(aes(x = date,
+                y = daily_recovered,
+                color = "Daily recovered")) +
+  geom_line(aes(x = date,
+                y = daily_death,
+                color = "Daily deaths")) +
+  ylab("Number of cases") +
+  xlab("Date") +
+  ggtitle("The daily cases of Egypt")
+
+ggplotly(summarydailyplot)
+# add text in the plot to show number of cases
+```
+
+```{r egypt-daily-curve}
+egypt_daily <- egypt_wrangled %>%
+  ggplot(aes(x = date,
+             y = daily_confirmed)) +
+  geom_col(fill = "rosybrown1") +
+  geom_line(size = 0, alpha = 0) +
+  geom_smooth(color = "red", size = 1) +
+    labs(x ="Date",
+       y = "Daily confirmed cases",
+       title = "Daily confirmed cases in Egypt") +
+  theme(panel.background = element_rect(fill = "grey16"),
+        plot.background = element_rect(fill = "grey16"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(color = "white"),
+        axis.text = element_text(color = "white"),
+        axis.line.x = element_line(linetype = "dashed", 
+                                  color = "white",
+                                  size = 0.6))
+egypt_daily
+
+ggplotly()
+```
+
+
+
+```{r}
+stockdata <- read_excel("EGX30.xlsx")  %>%
+  mutate(dateformat = as.Date(Date),
+         month = month(dateformat)) 
+
+glimpse(stockdata)
+```
+
+```{r}
+# graph by month:
+ggplot(data = stockdata,
+  aes(dateformat, as.numeric(Price))) +
+  stat_summary(fun.y = sum, # adds up all observations for the month
+    geom = "bar") + # or "line"
+  scale_x_date(
+    breaks = "1 month") # custom x-axis labels
+```
+
+
+```{r}
+colorspace::hcl_palettes("Qualitative", plot = "TRUE", n = 7)
+
+stockdata %>%
+  group_by(Company) %>%
+  ggplot() +
+  geom_line(aes(x = Date,
+             y = log(Price),
+             color = Company)) +
+  scale_fill_brewer(palette = "Dark2")
+ggplotly()
+```
+
+ geom_text_repel(data = filter(egypt_wrangled, date == "2020-09-05"),
+            aes(color = "white", label = "Confirmed"),
+            nudge_x = 1, xlim = c(2020-09-05, Inf)) +
+
+
+```{css, echo = FALSE}
+
+html, body, p {
+  
+  font-size: 16px;
+  color: #333333;
+   text-align: justify;
+}
+
+html, body, div, h1 {
+  
+  font-size: 22px;
+  color: gray16;
+}
+
+th, td {
+    font-size: 16px;
+}
+```
+
+# Achknowledgements
+This blog is made with [roxo-hugo](https://github.com/StaticMania/roxo-hugo) theme of Blogdown (@blogdown), alongside with R packages @tidyverse, @tidycovid, @zoo, @ggplot2, @kableExtra, @DT, @bookdown, @broom, @sparkline, @formattable, @lubridate, and @plotly.
+
+# References

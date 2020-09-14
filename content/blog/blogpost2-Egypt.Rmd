@@ -44,15 +44,7 @@ covid_data_egypt <- coronavirus %>%
 
 # Data Description
 
-There are two data being used here. The COVID-19 data is taken from the [coronavirus](https://github.com/RamiKrispin/coronavirus) package created by Rami Krispin. This package provides a tidy data format of COVID-19 pandemic, which uses the raw data taken from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository. This dataset contains 182,120 rows and 7 columns. However, this blog post will only analyse Egypt, whose observations start from January 22, 2020 to September 9, 2020 with 696 rows and 7 columns. This dataset contains the following variables:
--  **date**: date of observations
-
-?? do this or nah?
-
--  **confirmed**: Confirmed Covid-19 cases as reported by JHU CSSE (accumulated)  
--  **deaths**: Covid-19-related deaths as reported by JHU CSSE (accumulated)  
--  **recovered**: Covid-19 recoveries as reported by JHU CSSE (accumulated)
--  **apple_mtr_driving**: Apple Maps usage for driving directions, as percentage
+There are two data being used here. The COVID-19 data is taken from the [coronavirus](https://github.com/RamiKrispin/coronavirus) package created by Rami Krispin. This package provides a tidy data format of COVID-19 pandemic, which uses the raw data taken from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository. This dataset contains 182,120 rows and 7 columns. However, this blog post will only analyse Egypt, whose observations start from January 22, 2020 to September 9, 2020 with 696 rows and 7 columns.
 
 The second dataset being used here is a stock prices dataset, which is taken from [Investing website](https://www.investing.com/indices/egx30). Here, the monthly data for each of the companies listed in EGX30 index are taken one by one and then combined together into one dataset. This dataset contains monthly average stock prices for companies listed in EGX30 from June 2019 to September 2020 which consists of 448 rows and 10 columns.
 
@@ -145,8 +137,9 @@ egypt_daily <- egypt_wrangled %>%
         plot.title.position = "plot",
         text = element_text(color = "white"),
         axis.text = element_text(color = "white"),
-        axis.line.x = element_line(linetype = "dashed", 
-                                  color = "white",
+        axis.line.x = element_line(color = "white",
+                                  size = 0.6),
+        axis.line.y = element_line(color = "white",
                                   size = 0.6)) +
   annotate(geom = "pointrange",
            x = as.Date("2020-03-24"), 
@@ -197,7 +190,8 @@ Figure \@ref(fig:egypt-daily-curve) illustrates the confirmed daily cases in Egy
 
 As the cases began to increase, Egypt implemented a nationwide curfew starting March 24 as Shops were closed from five pm to six am and restaurants, cafes, bars, tourists sites, airports and schools were shut down. An interesting here is the restrictions was eased on June 27 when the number of cases showed no sign of plummeting. Surprisingly, the number of cases started to plateau in early July. There has not been an established explanation of this, but there have been speculations such as vaccines for other diseases that are still obligatory in Egypt helped in developing stronger immunity and that Egyptians have developed a hard immunity. However, as the easing of measures is parallel to the plateau of the daily confirmed cases in Egypt, it is unlikely that the plateau is a reasult of the measures implemented. Looking at the figure, there is an increasing cases again recently after the promising drop, leading to a concern of the coming of second wave.
 
-# The Effect of COVID-19 Cases to Stock Prices
+# The Effect of COVID-19 Cases on Stock Prices
+To understand the effect of COVID-19 to the economy, we are looking at the stock prices of EGX30 stock index. 
 
 ```{r wrangling-stockdata}
 stockdata <- read_excel("stockdata.xlsx")  %>%
@@ -241,9 +235,10 @@ stockdata %>%
 ggplotly()
 ```
 
-EGX30 is,.
-Looking at Figure
-it was going pretty steady (with a bit of increasing and decreasing), it dropped sharply in march
+EGX30 Index includes top 30 companies in Egypt in terms of liquidity and activity. Looking at Figure \@ref(fig:stock-movement), the stock prices were going pretty steady, with just a slight volatility, from mid-2019 until it dropped sharply in March 2020. 
+
+
+
 
 
 eventho there are some variabilities in the stock movements, all of the stock prices dropped 
