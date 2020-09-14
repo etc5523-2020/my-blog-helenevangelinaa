@@ -2,8 +2,8 @@
 title: "State of COVID-19 Cases in Egypt"
 author: "Helen Evangelina"
 date: '2020-09-11'
-image: images/blog/covidspain.jpg
-feature_image: images/blog/covidspain2.jpg
+image: images/blog/covidegypt.jpg
+feature_image: images/blog/covidegypt2.jpg
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
 output: 
@@ -64,7 +64,7 @@ egypt_wrangled <- covid_data_egypt %>%
 ```
 
 
-```{r cumulative-egypt, fig.cap="Summary of cumulative cases in Egypt.", fig.align="centre"}
+```{r cumulative-egypt, fig.cap="Summary of cumulative cases in Egypt.", fig.align="center"}
 egypt_wrangled %>%
   ggplot() +
   geom_line(aes(x = date,
@@ -119,7 +119,7 @@ axis.line.y = element_line(color = "white",
 ```
 Being Arab world’s most populous country, Egypt has a relatively low total cases of COVID-19 compared to the other countries. Figure \@ref(fig:cumulative-egypt) is showing the trend of cumulative cases of COVID-19 overtime in Egypt. From this graph, it can be seen that the cumulative confirmed cases are increasing in a decreasing rate. The line is flattening overtime, which shows that Egypt is doing a good job in dealing with the cases. In contrast to the confirmed cases, the recovered cases are increasing in an increasing rate, to the point that the number of people recovered almost reaches the number of total confirmed cases - showing that there are only a few active cases left in Egypt. Egypt also has a very low death rate.
 
-```{r egypt-daily-curve, fig.cap= "Daily confirmed cases in Egypt which is showing a flattening of the curve.", fig.align="centre"}
+```{r egypt-daily-curve, fig.cap= "Daily confirmed cases in Egypt which is showing a flattening of the curve.", fig.align="center"}
 egypt_daily <- egypt_wrangled %>%
   ggplot(aes(x = date,
              y = daily_confirmed)) +
