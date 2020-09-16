@@ -10,7 +10,7 @@ output:
   blogdown::html_page:
     fig_width: 6
     dev: "svg"
-bibliography: references.bib
+bibliography: references2.bib
 biblio-style: authoryear-comp
 ---
 
@@ -29,9 +29,11 @@ library(plotly)
 library(lubridate)
 library(readxl)
 library(ggrepel)
+library(bookdown)
+library(blogdown)
 ```
 
-COVID-19 pandemic has been declared as a Public Health Emergency of International Concern by the World Health Organisation. It has been a global issue since the first outbreak from China's Hubei Province, and it is destroying economies worldwide. “The economic warning signs are here and we have already seen the pandemic’s immediate impact on employment levels, household income, industry operations, and supply chains” (Chaiechi, 2020). Therefore, this blog post will look at the COVID-19 state in Egypt and then look at how the economy is affected by looking at stock prices.
+COVID-19 pandemic has been declared as a Public Health Emergency of International Concern by the World Health Organisation. It has been a global issue since the first outbreak from China's Hubei Province, and it is destroying economies worldwide. “The economic warning signs are here and we have already seen the pandemic’s immediate impact on employment levels, household income, industry operations, and supply chains” (@economy). Therefore, this blog post will look at the COVID-19 state in Egypt and then look at how the economy is affected by looking at stock prices.
 
 ```{r loading-data-spain}
 coronavirus <- coronavirus
@@ -184,12 +186,12 @@ egypt_daily <- egypt_wrangled %>%
 egypt_daily
 
 ```
-Figure \@ref(fig:egypt-daily-curve) illustrates the confirmed daily cases in Egypt. The red line is showing the overall summary of how the daily confirmed cases is changing. Egypt has a very low daily confirmed cases at the beginning of the year until it started increasing sharply in May and peaked on June 19, reaching 1774 cases. The low numbers at the beginning of the outbreak were feared by many that these numbers may not fully represented the actual nnumber of cases due to the limited numbers of administered tests (https://egyptianstreets.com/2020/09/07/newsflash-covid-19-isnt-over-guide-to-the-state-of-the-pandemic-in-egypt/). 
+Figure \@ref(fig:egypt-daily-curve) illustrates the confirmed daily cases in Egypt. The red line is showing the overall summary of how the daily confirmed cases is changing. Egypt has a very low daily confirmed cases at the beginning of the year until it started increasing sharply in May and peaked on June 19, reaching 1774 cases. The low numbers at the beginning of the outbreak were feared by many that these numbers may not fully represent the actual nnumber of cases due to the limited numbers of administered tests (@egypt). 
 
 As the cases began to increase, Egypt implemented a nationwide curfew starting March 24 as Shops were closed from five pm to six am and restaurants, cafes, bars, tourists sites, airports and schools were shut down. An interesting here is the restrictions was eased on June 27 when the number of cases showed no sign of plummeting. Surprisingly, the number of cases started to plateau in early July. There has not been an established explanation of this, but there have been speculations such as vaccines for other diseases that are still obligatory in Egypt helped in developing stronger immunity and that Egyptians have developed a hard immunity. However, as the easing of measures is parallel to the plateau of the daily confirmed cases in Egypt, it is unlikely that the plateau is a reasult of the measures implemented. Looking at the figure, there is an increasing cases again recently after the promising drop, leading to a concern of the coming of second wave.
 
 # The Effect of COVID-19 Cases on Stock Prices
-To understand the effect of COVID-19 to the economy, we are looking at the stock prices of EGX30 stock index. Here, the log of the Price is used instead of just price to allow better comparison.
+Is the stock prices affected by the coronavirus pandemic? Is there any correlation between the confirmed cases with the stock prices? To understand the effect of COVID-19 to the economy, we are looking at the stock prices of EGX30 stock index. Here, the log of the Price is used instead of just price to allow better comparison.
 
 ```{r wrangling-stockdata}
 stockdata <- read_excel("stockdata.xlsx")  %>%
@@ -197,7 +199,7 @@ stockdata <- read_excel("stockdata.xlsx")  %>%
          month = month(dateformat)) 
 ```
 
-```{r stock-movement, fig.cap="Movement of stcok prices of top 30 companies in Egypt."}
+```{r stock-movement, fig.cap="Movement of stock prices of top 30 companies in Egypt."}
 stock_movement <- stockdata %>%
   ggplot(aes(x = as.Date(Date),
             y = log(Price))) +
@@ -233,10 +235,9 @@ stock_movement <- stockdata %>%
 ggplotly(stock_movement)
 ```
 
-EGX30 Index includes top 30 companies in Egypt in terms of liquidity and activity. Looking at Figure \@ref(fig:stock-movement), the stock prices were going pretty steady, with just a slight volatility, from mid-2019 until it dropped sharply in March 2020. Even though there are variabilities in the stock movements, all of the stock prices are dropped. This drop in March is aligned to the increasing coronavirus cases in Egypt starting March, indicating the sensitivity of stock market to COVID-19 pandemic. However, as the confirmed cases continued to increase sharply in Egypt, the stock prices did not drop further - it is increasing instead. However, the stock prices have not recovered to the original price before coronavirus pandemic struck. 
+EGX30 Index includes top 30 companies in Egypt in terms of liquidity and activity. Looking at Figure \@ref(fig:stock-movement), the stock prices were going pretty steady, with just a slight volatility, from mid-2019 until it dropped sharply in March 2020. Even though there are variabilities in the stock movements, all of the stock prices are dropping. This drop in March is aligned to the increasing coronavirus cases in Egypt starting March, indicating the sensitivity of stock market to COVID-19 pandemic. However, as the confirmed cases continued to increase sharply in Egypt, the stock prices did not drop further - it is increasing instead. However, the stock prices have not recovered to the original price before coronavirus pandemic struck. 
 
-# Conclusion
-despite the increasing cases
+So to answer the question whether the stock prices in Egypt are affected by coronavirus; yup! The stock prices are definitely affected by coronavirus pandemic as the stock prices for all companies dropped in March. However, there is no clear correlation between those two as despite the increasing cases post-March, the stock prices did not drop any further.    
 
 
 
@@ -262,6 +263,6 @@ th, td {
 ```
 
 # Achknowledgements
-This blog is made with [roxo-hugo](https://github.com/StaticMania/roxo-hugo) theme of Blogdown (@blogdown), alongside with R packages @tidyverse, @tidycovid, @zoo, @ggplot2, @kableExtra, @DT, @bookdown, @broom, @sparkline, @formattable, @lubridate, and @plotly.
+This blog is made with [roxo-hugo](https://github.com/StaticMania/roxo-hugo) theme of Blogdown (@blogdown), alongside with R packages @tidyverse, @coronavirus, @readxl, @ggplot2, @bookdown, @ggrepel, @lubridate, and @plotly.
 
 # References
