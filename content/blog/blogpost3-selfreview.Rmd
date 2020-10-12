@@ -1,0 +1,42 @@
+---
+title: "Self-review of my Shiny app on COVID-19"
+author: "Helen Evangelina"
+date: '2020-10-12'
+image: images/blog/covidspain.jpg
+feature_image: images/blog/covidspain2.jpg
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+output: 
+  blogdown::html_page:
+    fig_width: 6
+    dev: "svg"
+bibliography: references.bib
+biblio-style: authoryear-comp
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+This blog post will be a self-review of the shiny app on COVID-19 overview that I previously made which can be found [here](@https://github.com/etc5523-2020/shiny-assessment-helenevangelinaa). (put it up on shinyapps.io and put the link here)  
+
+# Introduction
+(a section introducing your shiny app and what it does)
+
+COVID-19 has currently became a global trend since it spread worldwide from China's Hubei Province. Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus (@WHO). As the spread of the virus has affected life, economies and other parts of our life, the shiny app was created to allow users to explore data related to COVID-19 in the world.
+
+The shiny app was developed in R and supported by `shiny` and `shinydashboard` packages to facilitate interactive visualisation. This shiny dashboard was created to help users to understand the state of COVID-19 in the world as it contains visualisations related to COVID-19 which can be updated according to the user inputs. The interactions would provide users a deeper insight of the trend of COVID-19 cases.
+
+The dataset used is taken from [tidycovid19](https://github.com/joachim-gassen/tidycovid19) package created by Joachim Gassen. The `tidycovid19` package was created to provide transparent access to various data sources. The dataset used is the merged dataset, which can be obtained by using the `download_merged_data` function. This merged dataset contains data of coronavirus cases (confirmed, recovered, death) originally collected and cleaned by [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19), alongside with some other variables such as apple_mtr_driving which is the Apple Maps usage for driving directions taken, as percentage*100 relative to the baseline of Jan 13, 2020, taken from [Apple Mobility Trends Report](https://covid19.apple.com/mobility). It also contains [Google Commmunity Mobility Reports](https://www.google.com/covid19/mobility/) data of the frequency places are being visited. However, the shiny app will only be using the variables `country`, `date`, `confirmed`, `deaths`, `recovered`, `region`, and `population`.
+
+Alongside with the `tidycovid19` package, `countries.csv` file (@googledev)  containing the country names, longitudes and latitudes is also used. Shapefile taken from [thematicmapping.org](http://thematicmapping.org/downloads/world_borders.php) is also used to produce the world map. These files are located inside the `data` folder.
+
+The shiny dashboard presents data related to COVID-19 which would allow users to compare the number of confirmed cases, deaths and recovered in the world. The visualisation consists of:
+1. A choropleth map combined with proportional symbol map, displaying the number of cases per 10,000 people indicated by the colour on the map and the total number of confirmed cases which is illustrated by the size of the dots
+2. A summary table displaying the total number of onfirmed cases, deaths, and recovered, alongside with the region and case per 10,000 for each of the countries
+3. A line graph showing the overall trend of confirmed cases by country, coloured by region
+4. Figures illustrating the daily confirmed cases, daily deaths and daily recovered for a country, which can be changed to the country desired
+5. A summary plot displaying the overall trend of COVID-19 (confirmed, deaths, recovered) which can also be updated to the chosen country
+
+# Self-review
+the colour on the map does not seem to be right

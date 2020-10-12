@@ -118,6 +118,7 @@ panel.grid.major = element_blank(),
 axis.line.y = element_line(color = "white",
                            size = 0.6)) +
   guides(color = FALSE)
+ggplotly()
 ```
 Being Arab world’s most populous country, Egypt has a relatively low total cases of COVID-19 compared to the other countries. Figure \@ref(fig:cumulative-egypt) is showing the trend of cumulative cases of COVID-19 overtime in Egypt. From this graph, it can be seen that the cumulative confirmed cases are increasing in a decreasing rate. The line is flattening overtime, which shows that Egypt is doing a good job in dealing with the cases. In contrast to the confirmed cases, the recovered cases are increasing in an increasing rate, to the point that the number of people recovered almost reaches the number of total confirmed cases - showing that there are only a few active cases left in Egypt. Egypt also has a very low death rate.
 
@@ -235,9 +236,7 @@ stock_movement <- stockdata %>%
 ggplotly(stock_movement)
 ```
 
-EGX30 Index includes top 30 companies in Egypt in terms of liquidity and activity. Looking at Figure \@ref(fig:stock-movement), the stock prices were going pretty steady, with just a slight volatility, from mid-2019 until it dropped sharply in March 2020. Even though there are variabilities in the stock movements, all of the stock prices are dropping. This drop in March is aligned to the increasing coronavirus cases in Egypt starting March, indicating the sensitivity of stock market to COVID-19 pandemic. However, as the confirmed cases continued to increase sharply in Egypt, the stock prices did not drop further - it is increasing instead. However, the stock prices have not recovered to the original price before coronavirus pandemic struck. 
-
-So to answer the question whether the stock prices in Egypt are affected by coronavirus; yup! The stock prices are definitely affected by coronavirus pandemic as the stock prices for all companies dropped in March. However, there is no clear correlation between those two as despite the increasing cases post-March, the stock prices did not drop any further.    
+EGX30 Index includes top 30 companies in Egypt in terms of liquidity and activity. Looking at Figure \@ref(fig:stock-movement), the stock prices were going pretty steady, with just a slight volatility, from mid-2019 until it dropped sharply in March 2020. Even though there are variabilities in the stock movements, all of the stock prices are dropping. This drop in March is aligned to the increasing coronavirus cases in Egypt starting March, indicating the sensitivity of stock market to COVID-19 pandemic. However, as the confirmed cases continued to increase sharply in Egypt, the stock prices did not drop further - it is increasing instead. However, the stock prices have not recovered to the original price before coronavirus pandemic struck. So to answer the question whether the stock prices in Egypt are affected by coronavirus; yup! The stock prices are definitely affected by coronavirus pandemic as the stock prices for all companies dropped in March. However, there is no clear correlation between those two as despite the increasing cases post-March, the stock prices did not drop any further.    
 
 
 
