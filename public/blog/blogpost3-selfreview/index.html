@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <title>Self-review of my Shiny app on COVID-19</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  
+  <meta name="author" content="StaticMania">
+  
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- Bootstrap -->
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
+  <!-- Main Stylesheets -->
+  
+  <link href="/scss/style.min.css" rel="stylesheet" />
+
+  
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+</head><body><nav class="navbar navbar-expand-lg site-navigation">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/images/logo.png" alt="logo" />
+    </a>
+    <button
+      class="navbar-toggler collapsed"
+      type="button"
+      data-toggle="collapse"
+      data-target="#sitenavbar"
+    >
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenavbar">
+      <ul class="navbar-nav ml-auto main-nav">
+         
+         
+         
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/"
+              >Home</a
+            >
+          </li>
+           
+         
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about"
+              >About</a
+            >
+          </li>
+           
+         
+          
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-sm btn-primary btn-sm-rounded"
+              href="/blog"
+            >
+              <span class="btn-area">
+                <span data-text="Blog">
+                  Blog
+                </span>
+              </span>
+            </a>
+          </li>
+           
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<main>
+
+<section class="site-blog details">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <article class="site-blog-details">
+          <p><span>October 12, 2020</span> by <span>Helen Evangelina</span></p>
+          <h2 class="blog-title">Self-review of my Shiny app on COVID-19</h2>
+          <img class="feature-image" src="/images/blog/covidspain2.jpg" alt="blog-feature-image">
+          
+
+
+<p>This blog post will be a self-review of the shiny app on COVID-19 overview that I previously made which can be found <a href="@https://github.com/etc5523-2020/shiny-assessment-helenevangelinaa">here</a>. (put it up on shinyapps.io and put the link here)</p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>(a section introducing your shiny app and what it does)</p>
+<p>COVID-19 has currently became a global trend since it spread worldwide from China’s Hubei Province. Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus (<span class="citation">World Health Organization (2020)</span>). As the spread of the virus has affected life, economies and other parts of our life, the shiny app was created to allow users to explore data related to COVID-19 in the world.</p>
+<p>The shiny app was developed in R and supported by <code>shiny</code> and <code>shinydashboard</code> packages to facilitate interactive visualisation. This shiny dashboard was created to help users to understand the state of COVID-19 in the world as it contains visualisations related to COVID-19 which can be updated according to the user inputs. The interactions would provide users a deeper insight of the trend of COVID-19 cases.</p>
+<p>The dataset used is taken from <a href="https://github.com/joachim-gassen/tidycovid19">tidycovid19</a> package created by Joachim Gassen. The <code>tidycovid19</code> package was created to provide transparent access to various data sources. The dataset used is the merged dataset, which can be obtained by using the <code>download_merged_data</code> function. This merged dataset contains data of coronavirus cases (confirmed, recovered, death) originally collected and cleaned by <a href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins University</a>, alongside with some other variables such as apple_mtr_driving which is the Apple Maps usage for driving directions taken, as percentage*100 relative to the baseline of Jan 13, 2020, taken from <a href="https://covid19.apple.com/mobility">Apple Mobility Trends Report</a>. It also contains <a href="https://www.google.com/covid19/mobility/">Google Commmunity Mobility Reports</a> data of the frequency places are being visited. However, the shiny app will only be using the variables <code>country</code>, <code>date</code>, <code>confirmed</code>, <code>deaths</code>, <code>recovered</code>, <code>region</code>, and <code>population</code>.</p>
+<p>Alongside with the <code>tidycovid19</code> package, <code>countries.csv</code> file (<span class="citation">Google Developers (2012)</span>) containing the country names, longitudes and latitudes is also used. Shapefile taken from <a href="http://thematicmapping.org/downloads/world_borders.php">thematicmapping.org</a> is also used to produce the world map. These files are located inside the <code>data</code> folder.</p>
+<p>The shiny dashboard presents data related to COVID-19 which would allow users to compare the number of confirmed cases, deaths and recovered in the world. The visualisation consists of:
+1. A choropleth map combined with proportional symbol map, displaying the number of cases per 10,000 people indicated by the colour on the map and the total number of confirmed cases which is illustrated by the size of the dots<br />
+2. A summary table displaying the total number of onfirmed cases, deaths, and recovered, alongside with the region and case per 10,000 for each of the countries<br />
+3. A line graph showing the overall trend of confirmed cases by country, coloured by region<br />
+4. Figures illustrating the daily confirmed cases, daily deaths and daily recovered for a country, which can be changed to the country desired<br />
+5. A summary plot displaying the overall trend of COVID-19 (confirmed, deaths, recovered) which can also be updated to the chosen country</p>
+</div>
+<div id="self-review" class="section level1">
+<h1>Self-review</h1>
+<p>the colour on the map does not seem to be right</p>
+<div id="refs" class="references">
+<div id="ref-googledev">
+<p>Google Developers. 2012. <em>Countries.csv</em>. <a href="https://developers.google.com/public-data/docs/canonical/countries_csv">https://developers.google.com/public-data/docs/canonical/countries_csv</a>.</p>
+</div>
+<div id="ref-WHO">
+<p>World Health Organization. 2020. <em>Coronavirus</em>. <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1">https://www.who.int/health-topics/coronavirus#tab=tab_1</a>.</p>
+</div>
+</div>
+</div>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+
+
+
+        </main><footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="site-footer-logo"><a href="/"><img src="/images/logo-footer.png" alt="logo-footer"></a></div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6">
+        <div class="site-footer-widget">
+          <h5 class="site-footer-widget-title">Contact Info</h5>
+          <p class="site-footer-widget-description">
+            
+            <br>
+            <a href="tel:0481777655">0481777655</a>
+            <br>
+            <a href="mailto:heva0001@student.monash.edu">heva0001@student.monash.edu</a>
+          </p>
+        </div>
+      </div>
+      
+      
+      
+      <div class="col-lg-2 col-md-6">
+        <div class="site-footer-widget">
+          <h5 class="site-footer-widget-title">Social Media</h5>
+          <ul class="site-footer-widget-links">
+            
+              <li><a href="https://www.facebook.com/helen.evangelina">Facebook</a></li>
+            
+              <li><a href="https://github.com/helenevangelinaa">GitHub</a></li>
+            
+              <li><a href="https://www.instagram.com/helenevangelina/?hl=en">Instagram</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      
+      <div class="col-lg-2 col-12">
+        <a href="#top" class="site-footer-widget-top">
+          <img src="/images/to-top.svg" alt="back-to-top">
+          <p>
+            I want to 
+            <br>
+            visit again
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="/js/formhandler.min.js"></script>
+
+<script src="/js/vendor.min.js"></script>
+
+<script src="/js/script.min.js"></script></body>
+</html>

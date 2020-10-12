@@ -40,23 +40,3 @@ The shiny dashboard presents data related to COVID-19 which would allow users to
 
 # Self-review
 the colour on the map does not seem to be right
-
-```{css, echo = FALSE}
-
-html, body, p {
-  
-  font-size: 16px;
-  color: #333333;
-   text-align: justify;
-}
-
-html, body, div, h1 {
-  
-  font-size: 22px;
-  color: gray16;
-}
-
-th, td {
-    font-size: 16px;
-}
-```

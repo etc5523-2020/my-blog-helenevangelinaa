@@ -2,30 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>regression on Website Blog | Helen Evangelina</title>
-    <link>http://example.org/tags/regression/</link>
+    <link>/tags/regression/</link>
     <description>Recent content in regression on Website Blog | Helen Evangelina</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/regression/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/regression/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Self-review of my Shiny app on COVID-19</title>
+      <link>/blog/blogpost3-selfreview/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/blogpost3-selfreview/</guid>
+      <description>This blog post will be a self-review of the shiny app on COVID-19 overview that I previously made which can be found here. (put it up on shinyapps.</description>
+    </item>
+    
+    <item>
       <title>State of COVID-19 Cases in Egypt</title>
-      <link>http://example.org/blog/blogpost2-egypt/</link>
+      <link>/blog/blogpost2-egypt/</link>
       <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/blog/blogpost2-egypt/</guid>
+      <guid>/blog/blogpost2-egypt/</guid>
       <description>COVID-19 pandemic has been declared as a Public Health Emergency of International Concern by the World Health Organisation. It has been a global issue since the first outbreak from China’s Hubei Province, and it is destroying economies worldwide.</description>
     </item>
     
     <item>
       <title>State of COVID-19 Cases in Spain</title>
-      <link>http://example.org/blog/blogpost1/</link>
+      <link>/blog/blogpost1/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/blog/blogpost1/</guid>
+      <guid>/blog/blogpost1/</guid>
       <description>Coronavirus Disease (COVID-19) has been a major issue since the virus spread worldwide from China’s Hubei Province, and it is affecting life.</description>
     </item>
     
