@@ -18,11 +18,9 @@ biblio-style: authoryear-comp
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
 
-This blog post will be a self-review of the shiny app on COVID-19 overview that I previously made which can be found [here](@https://github.com/etc5523-2020/shiny-assessment-helenevangelinaa). (put it up on shinyapps.io and put the link here)  
+This blog post will be a self-review of the shiny app on COVID-19 overview that I previously made which can be found [here](https://helen-evangelinaa.shinyapps.io/shinydashboard-COVID19overview/).
 
 # Introduction
-(a section introducing your shiny app and what it does)
-
 COVID-19 has currently became a global trend since it spread worldwide from China's Hubei Province. Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus (@WHO). As the spread of the virus has affected life, economies and other parts of our life, the shiny app was created to allow users to explore data related to COVID-19 in the world.
 
 The shiny app was developed in R and supported by `shiny` and `shinydashboard` packages to facilitate interactive visualisation. This shiny dashboard was created to help users to understand the state of COVID-19 in the world as it contains visualisations related to COVID-19 which can be updated according to the user inputs. The interactions would provide users a deeper insight of the trend of COVID-19 cases.
@@ -82,7 +80,7 @@ Some things that could possibly be added into the shinydashboard includes a slid
 
 The addition of summary table displaying the overall worldwide totals would be beneficial so that a comparison between the world total and a specific country could be drawn. Another option is as mentioned above, the addition of infoBox which is specifying the total number of confirmed, deaths and recovered worldwide etc, would also add useful summary information for readers, while also making it more entertaining.
 
-Bar charts as seen in (https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/)
+Bar charts as seen in [information is beautiful website](https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/)
 would be a nice addition to the dashboard as this would inform readers of the top countries with the highest cases alongside with their rates. This would allow readers to compare whether countries with the highest number of cases also have the highest number of deaths.
 
 Other meaningful variables such as the death ratio or recovery rate could be added into the table to add more meaningful insight as well as expand the scope of analysis. By looking at the death ratio and recovery rate, users would be able to know which countries have high death rates and low recovery rates which most likely is due to the healthcare facilities and whether the country is well developed or not. The `tidycovid19` package also includes other variables from Apple Mobility Trends Report and Google Community Mobility Reports, which could ne presented in the dashboard to add more insights about the mobility and whether the increasing cases is affecting the mobility of people. 
@@ -122,3 +120,8 @@ th, td {
     font-size: 16px;
 }
 ```
+
+# Achknowledgements
+This blog is made with [roxo-hugo](https://github.com/StaticMania/roxo-hugo) theme of Blogdown (@blogdown).
+
+# References
