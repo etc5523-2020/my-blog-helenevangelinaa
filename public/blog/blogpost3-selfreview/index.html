@@ -88,7 +88,7 @@
         <article class="site-blog-details">
           <p><span>October 12, 2020</span> by <span>Helen Evangelina</span></p>
           <h2 class="blog-title">Self-review of my Shiny app on COVID-19</h2>
-          <img class="feature-image" src="/images/blog/covidspain2.jpg" alt="blog-feature-image">
+          <img class="feature-image" src="/images/blog/review2.jpg" alt="blog-feature-image">
           
 
 
@@ -99,25 +99,26 @@
 <p>The shiny app was developed in R and supported by <code>shiny</code> and <code>shinydashboard</code> packages to facilitate interactive visualisation. This shiny dashboard was created to help users to understand the state of COVID-19 in the world as it contains visualisations related to COVID-19 which can be updated according to the user inputs. The interactions would provide users a deeper insight of the trend of COVID-19 cases.</p>
 <p>The dataset used is taken from <a href="https://github.com/joachim-gassen/tidycovid19">tidycovid19</a> package created by Joachim Gassen. The <code>tidycovid19</code> package was created to provide transparent access to various data sources. The dataset used is the merged dataset, which can be obtained by using the <code>download_merged_data</code> function. This merged dataset contains data of coronavirus cases (confirmed, recovered, death) originally collected and cleaned by <a href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins University</a>, alongside with some other variables such as apple_mtr_driving which is the Apple Maps usage for driving directions taken, as percentage*100 relative to the baseline of Jan 13, 2020, taken from <a href="https://covid19.apple.com/mobility">Apple Mobility Trends Report</a>. It also contains <a href="https://www.google.com/covid19/mobility/">Google Commmunity Mobility Reports</a> data of the frequency places are being visited. However, the shiny app will only be using the variables <code>country</code>, <code>date</code>, <code>confirmed</code>, <code>deaths</code>, <code>recovered</code>, <code>region</code>, and <code>population</code>.</p>
 <p>Alongside with the <code>tidycovid19</code> package, <code>countries.csv</code> file (<span class="citation">Google Developers (2012)</span>) containing the country names, longitudes and latitudes is also used. Shapefile taken from <a href="http://thematicmapping.org/downloads/world_borders.php">thematicmapping.org</a> is also used to produce the world map. These files are located inside the <code>data</code> folder.</p>
-<p>The shiny dashboard presents data related to COVID-19 which would allow users to compare the number of confirmed cases, deaths and recovered in the world. The dashboard (located in the <code>Dasboard</code> side-tab) consists of two tabs:
-* <strong>Map and Table</strong> which consists of a map and a summary table
-* <strong>Figures</strong> containing the graphs</p>
+<p>The shiny dashboard presents data related to COVID-19 which would allow users to compare the number of confirmed cases, deaths and recovered in the world. The dashboard (located in the <code>Dasboard</code> side-tab) consists of two tabs:<br />
+- <strong>Map and Table</strong> which consists of a map and a summary table<br />
+- <strong>Figures</strong> containing the graphs</p>
 <div id="first-tab---map-and-table" class="section level2">
 <h2>First tab - Map and Table</h2>
 <p>The first tab provides an overview of the state of COVID-19 cases in the world which can be changed based on user inputs.
-visualisation consists of:
+Visualisation consists of:<br />
 1. A choropleth map combined with proportional symbol map, displaying the number of cases per 10,000 people indicated by the colour on the map and the total number of confirmed cases which is illustrated by the size of the dots<br />
 2. A summary table displaying the total number of onfirmed cases, deaths, and recovered, alongside with the region and case per 10,000 for each of the countries</p>
 <p>These visualisations could be filtered by region and countries with cases more than the selected value could be hided.</p>
-<p><img src="C:/Monash%20Uni/Master/Semester%202%202020/ETC5523/my-blog-helenevangelinaa/static/images/blog/interaction1.png" width="250" /></p>
 </div>
 <div id="second-tab---figures" class="section level2">
 <h2>Second tab - Figures</h2>
 <p>The second tab further illustrates the COVID-19 cases in more details in where users can navigate which country they want to look at.
-Visualisation consists of:
-1. A line graph showing the overall trend of confirmed cases by country, coloured by region<br />
-2. Figures illustrating the daily confirmed cases, daily deaths and daily recovered for a country, which can be changed to the country desired<br />
-3. A summary plot displaying the overall trend of COVID-19 (confirmed, deaths, recovered) which can also be updated to the chosen country</p>
+Visualisation consists of:</p>
+<ol style="list-style-type: decimal">
+<li><p>A line graph showing the overall trend of confirmed cases by country, coloured by region</p></li>
+<li><p>Figures illustrating the daily confirmed cases, daily deaths and daily recovered for a country, which can be changed to the country desired</p></li>
+<li><p>A summary plot displaying the overall trend of COVID-19 (confirmed, deaths, recovered) which can also be updated to the chosen country</p></li>
+</ol>
 <p>In addition to the <code>Dashboard</code> side-tab, there are other tabs such as <code>About</code> which contains the author and the purpose of the application, <code>Instructions</code> which explains how to use the application in details, and <code>References</code> which contains references used.</p>
 </div>
 </div>
@@ -127,8 +128,8 @@ Visualisation consists of:
 <h2>What did you do well?</h2>
 <p>Despite some flaws on the shiny application that I made, there are some things that I feel like I did well. First of all, instead of using the standard shiny application, I decided to use <code>shinydashboard</code> so that the visualisation would be clearer and it would be more visually appealing. The usage of <code>shinydashboard</code> allows the usage of multiple tabs - which leads easier navigation for users and understand the format better. In addition to that, additional sstyling options by using css code was successfully implemented inside the shiny application itself, making it more visually appealing with a black-white-red-orangey theme.</p>
 <p>Secondly, all of the visualisations can be updated according to user inputs, which allows users to explore COVID-19 data in more details and gain deeper insights regarding the state of COVID-19. This is done well as it provides a flexibility for users to choose what outputs they want to look at by specifying the inputs.</p>
-<p>Next, a wide variety of user interactions is provided - slider input, select input and action button. Other than that, the implementation of <code>event_data</code> enables users to click on a country on the map in the second tab which would update Figure 2, 3, 4 and 5 to the chosen country, adding more interactivity and allowing users to analyse the state of COVID-19 in one specific country. This is something that I have not done before and it took me a while to figure out how it works, thus finally being able to successfully implement <code>event_data</code> was pleasing to me!<br />
-Lastly, the various types of visualisation are able to communicate the desired messages to users. Each of the visualisations has their own goals and they complement each other well. The usage of the plots in the second tab enhances the map and table - with map and table providing the overview of the COVID-19 state, while the plots allow users to dive deeper into the data and look at each country data in more details. Alongside with a choropleth map, proportional symbol is also added to enhance the visualisation as there might be some countries which have high number of cases due to the high number of population, therefore looking at the cases per 10,000 is useful in understanding which countries have higher number of cases in proportion to their population. Additionally, a pop-up label is added which would pop up when the mouse is being hovered over a country, showing the details of the country. The visualisations make the shinydashboard as a whole entity which communicates plentiful of information.</p>
+<p>Next, a wide variety of user interactions is provided - slider input, select input and action button. Other than that, the implementation of <code>event_data</code> enables users to click on a country on the map in the second tab which would update Figure 2, 3, 4 and 5 to the chosen country, adding more interactivity and allowing users to analyse the state of COVID-19 in one specific country. This is something that I have not done before and it took me a while to figure out how it works, thus finally being able to successfully implement <code>event_data</code> was pleasing to me!</p>
+<p>Lastly, the various types of visualisation are able to communicate the desired messages to users. Each of the visualisations has their own goals and they complement each other well. The usage of the plots in the second tab enhances the map and table - with map and table providing the overview of the COVID-19 state, while the plots allow users to dive deeper into the data and look at each country data in more details. Alongside with a choropleth map, proportional symbol is also added to enhance the visualisation as there might be some countries which have high number of cases due to the high number of population, therefore looking at the cases per 10,000 is useful in understanding which countries have higher number of cases in proportion to their population. Additionally, a pop-up label is added which would pop up when the mouse is being hovered over a country, showing the details of the country. The visualisations make the shinydashboard as a whole entity which communicates plentiful of information.</p>
 </div>
 <div id="what-are-the-points-you-can-improve-on" class="section level2">
 <h2>What are the points you can improve on?</h2>
