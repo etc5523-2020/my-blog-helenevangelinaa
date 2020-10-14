@@ -64,17 +64,49 @@ Despite some flaws on the shiny application that I made, there are some things t
 Secondly, all of the visualisations can be updated according to user inputs, which allows users to explore COVID-19 data in more details and gain deeper insights regarding the state of COVID-19. This is done well as it provides a flexibility for users to choose what outputs they want to look at by specifying the inputs. 
 
 Next, a wide variety of user interactions is provided - slider input, select input and action button. Other than that, the implementation of `event_data` enables users to click on a country on the map in the second tab which would update Figure 2, 3, 4 and 5 to the chosen country, adding more interactivity and allowing users to analyse the state of COVID-19 in one specific country. This is something that I have not done before and it took me a while to figure out how it works, thus finally being able to successfully implement `event_data` was pleasing to me!   
-Lastly, the various types of visualisation are able to communicate the desired messages to users. Each of the visualisations has their own goals and they complement each other well. The usage of the plots in the second tab enhances the map and table - with map and table providing the overview of the COVID-19 state, while the plots allow users to dive deeper into the data and look at each country data in more details. The visualisations  the shinydashboard as a whole entity which communicates plentiful of information. 
-
-
-
+Lastly, the various types of visualisation are able to communicate the desired messages to users. Each of the visualisations has their own goals and they complement each other well. The usage of the plots in the second tab enhances the map and table - with map and table providing the overview of the COVID-19 state, while the plots allow users to dive deeper into the data and look at each country data in more details. Alongside with a choropleth map, proportional symbol is also added to enhance the visualisation as there might be some countries which have high number of cases due to the high number of population, therefore looking at the cases per 10,000 is useful in understanding which countries have higher number of cases in proportion to their population. Additionally, a pop-up label is added which would pop up when the mouse is being hovered over a country, showing the details of the country. The visualisations  make the shinydashboard as a whole entity which communicates plentiful of information. 
 
 ## What are the points you can improve on?
+
+There are some things that can be improved from the shinydashboard that I created. Firstly, the region select input and the slider input in the first tab only update the dots on the map based on the input, they do not filter out the colour on the map. This could have been improved so that the colour on the map can also be updated based on the user inputs. Additionally, after exploring and analysing the shiny application again, the colours on the map do not seem to be right which might be due to an error in the code. This should have been fixed so that the colour on the map illustrates the number of cases per 10,000 people correctly. Additionally, Myanmar is not showing on the map because the country name in the dataset is "Myanmar (Burma)" instead of just "Myanmar".
+
+Even though the dataset is an updated dataset, which means that the figures in the second tab would be updated based on the most recent data in `tidycovid19` package, the map and summary table are not updated based on the most recent data. I used the total as in 2020-10-04 instead. The map and table should be updated by using the most recent dataset, which can be done by using `filter(date == max(date))` code instead of specifying `filter(date == '2020-10-04')`. 
+
+The ordering of the countries in the summary table is not alphabetical, which is due to the dataset. The ordering should have been made alphabetical so that it is better formatted and will not confuse the readers. 
+
+The visual presentation of the dashboard could have been made better. Even though I already added css code to make the dashboard looks nicer so that it is better than the standard shiny application, it still does not look as beautiful as other popular dashboards. The addition of `InfoBox` would definitely add more appeals to the dashboard while also presenting summaries of information to the readers. I should have taken more time to make the dashboard more visually appealing.  The **About** and **Instructions** tab could have been presented better to make it more engaging and less boring.  
+
+
+adding the slider input for figure 2
+
 ## What are some things that you’d like to add that’s plausible?
+
+Some things that could possibly be added into the shinydashboard includes a slider input to filter out the date on the map instead of just showing the most recent total cases. By showing the total confirmed cases and also the number of cases per 10,000 on a selected specific date, we would get an insight of how was the distribution of coronavirus on that date and whether coronavirus had spreaded to some countries on that date.   
+
+The addition of summary table displaying the overall worldwide totals would be beneficial so that a comparison between the world total and a specific country could be drawn. Another option is as mentioned above, the addition of infoBox which is specifying the total number of confirmed, deaths and recovered worldwide etc, would also add useful summary information for readers, while also making it more entertaining.
+
+Other meaningful variables such as the death ratio or recovery rate could be added into the table to add more meaningful insight as well as expand the scope of analysis. By looking at the death ratio and recovery rate, users would be able to know which countries have high death rates and low recovery rates which most likely is due to the healthcare facilities and whether the country is well developed or not. The `tidycovid19` package also includes other variables from Apple Mobility Trends Report and Google Community Mobility Reports, which could ne presented in the dashboard to add more insights about the mobility and whether the increasing cases is affecting the mobility of people. 
+
+Bar charts as seen in (https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/)
+would be a nice addition to the dashboard as this would inform readers of the top countries with the highest cases alongside with their rates. This would allow readers to compare whether countries with the highest number of cases also have the highest number of deaths.
+
+All these improvements would establish the dashboard more (expand the scope) of analysis and present readers with a more detailed information.
+
+  
+
+
+ 
+
+
+
+
 ## What are some things that you’d like to add that cannot be done yet due to limitation in data or technology?
 
+In my original design, I would like for the map in the first tab to be able to be clicked on the countries which would update the table based on the corresponding country chosen. Let's say Australia is clicked by the users, then the table would only show the summary of Australia. However, as the map was created by using `leaflet` instead of `ggplot2`, `event_data` could not be used. There might be another way to make it work, however due to my limited knowledge and experiences in using R, I could not seem to find a way to make it work even after doing some researches online.
 
-after exploring and analysing the shiny app again, the colour on the map does not seem to be right
+Analysing how the virus is trasmitted, such as whether the virus is trasmitted from workplaces, nightclubs, outdoor activities, family or friends, etc would add a very useful insight. By analysing how the virus is trasmitted, government would understand what is the major cause of the virus outbreak and therefore implement plans to be taken in place and take actions to minimise the spread of the virus. However, the dataset is does not supply this information, and there seems to be no such information online too. The reason for the unavailability of this kind of information is that gathering this kind of data would need technologies, therefore would be too difficult and time consuming.
+
+In addition to the previous point, having more details of each person in the dataset, such as sex and age, would facilitate the creation of visualisations which present the distribution of age and sex among the patients. By looking at this, readers could analyse whether sex and age are affecting the trasmission of the virus and therefore adds a more meaningful insight. Even though some countries have this data available, not every country records it as what was mentioned before, collecting this kind of data would be too difficult and there might be confidentiality issues around this.
 
 ```{css, echo = FALSE}
 
