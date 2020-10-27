@@ -68,7 +68,7 @@ biblio-style: authoryear-comp
 </div>
 <div id="improvements-for-the-shiny-app" class="section level2">
 <h2>Improvements for the shiny app?</h2>
-<p>Overall, the shiny app itself is visually appealing and there is a clear structure on the presentation of the app. There are explanations provided throughout the app which makes it easy for users to understand what is trying to be communicated. The only suggestion I could think of is to provide interactions on the map and linking it to the dot plot below, so that when a specific state on the map is clicked, it would update the dot plot to the selected state.</p>
+<p>Overall, the shiny app itself is visually appealing and there is a clear structure on the presentation of the app. There are explanations provided throughout the app which makes it easy for users to understand what is trying to be communicated. The only suggestion I could think of is to provide interactions on the map by linking it to the dot plot below, so that when a specific state on the map is clicked, it would update the dot plot to the selected state.</p>
 </div>
 <div id="is-the-documentation-sufficient-to-get-started" class="section level2">
 <h2>Is the documentation sufficient to get started?</h2>
@@ -77,7 +77,7 @@ biblio-style: authoryear-comp
 </div>
 <div id="what-i-have-learned-from-reviewing-the-package" class="section level1">
 <h1>What I have learned from reviewing the package?</h1>
-<p>By reviewing the package, I learned several insights. Firstly, I realised how important it is to provide clear instructions and explanations as the packages are shared with others. Therefore, the explanations have to be easily understand by everyone. When creating my package, I did not really pay attention to this kind of details and was just thinking through my own perspective as the creator of the package. I did not specify in the functions documentation file that there are some functions which are relative to the shiny app, and therefore could not be run in the console. Aarathy, on the other hand provides a clear description in the documentation clearly specifying this issue so that users would not get confused.</p>
+<p>By reviewing the package, I learned several insights. Firstly, I realised how important it is to provide clear instructions and explanations as the packages are shared with others. Therefore, the explanations have to be easily understood by everyone. When creating my package, I did not really pay attention to this kind of details and was just thinking through my own perspective as the creator of the package. I did not specify in the functions documentation file that there are some functions which are relative to the shiny app, and therefore could not be run in the console. Aarathy, on the other hand provides a clear description in the documentation clearly specifying this issue so that users would not get confused.</p>
 <p>In terms of the shiny app, I gained more insights about the COVID-19 trend in the US in terms of testing numbers and the demographic distribution. Other than that, I learned about <code>reactable</code> which could be used to make a clickable table that could enhance user interactions. This is something that I did not know before and it is definitely useful to be implemented in my future projects.</p>
 </div>
 <div id="appendix" class="section level1">
@@ -93,13 +93,19 @@ As the reviewer I confirm that there are no <a href="https://devguide.ropensci.o
 </div>
 <div id="documentation" class="section level2">
 <h2>Documentation</h2>
-<p>The package includes all the following forms of documentation:<br />
-- [x] <strong>Installation instructions:</strong> for the package is found in README<br />
-- [x] <strong>Vignette(s)</strong> demonstrating major functionality that runs successfully locally<br />
-- [x] <strong>Function Documentation:</strong> for all exported functions in R help<br />
-- [ ] <strong>Examples</strong> for all exported functions in R Help that run successfully locally</p>
-<div id="functionality" class="section level3">
-<h3>Functionality</h3>
+<ul>
+<li><input type="checkbox" disabled="" checked="" />
+<strong>Installation instructions:</strong> for the package is found in README.</li>
+<li><input type="checkbox" disabled="" checked="" />
+<strong>Vignette(s)</strong> demonstrating major functionality that runs successfully locally.<br />
+</li>
+<li><input type="checkbox" disabled="" checked="" />
+<strong>Function Documentation:</strong> for all exported functions in R help.</li>
+<li>[] <strong>Examples</strong> for all exported functions in R Help that run successfully locally.</li>
+</ul>
+</div>
+<div id="functionality" class="section level2">
+<h2>Functionality</h2>
 <ul>
 <li><input type="checkbox" disabled="" checked="" />
 <strong>Installation:</strong> Installation succeeds as documented.<br />
@@ -110,7 +116,6 @@ As the reviewer I confirm that there are no <a href="https://devguide.ropensci.o
 <li><input type="checkbox" disabled="" checked="" />
 <strong>Automated tests:</strong> Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.</li>
 </ul>
-</div>
 </div>
 <div id="review-comments" class="section level2">
 <h2>Review Comments</h2>
