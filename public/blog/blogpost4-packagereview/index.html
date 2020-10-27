@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <title>Review of R Package uscovid</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  
+  <meta name="author" content="StaticMania">
+  
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- Bootstrap -->
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
+  <!-- Main Stylesheets -->
+  
+  <link href="/scss/style.min.css" rel="stylesheet" />
+
+  
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+</head><body><nav class="navbar navbar-expand-lg site-navigation">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/images/logo.png" alt="logo" />
+    </a>
+    <button
+      class="navbar-toggler collapsed"
+      type="button"
+      data-toggle="collapse"
+      data-target="#sitenavbar"
+    >
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenavbar">
+      <ul class="navbar-nav ml-auto main-nav">
+         
+         
+         
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/"
+              >Home</a
+            >
+          </li>
+           
+         
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about"
+              >About</a
+            >
+          </li>
+           
+         
+          
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-sm btn-primary btn-sm-rounded"
+              href="/blog"
+            >
+              <span class="btn-area">
+                <span data-text="Blog">
+                  Blog
+                </span>
+              </span>
+            </a>
+          </li>
+           
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<main>
+
+<section class="site-blog details">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <article class="site-blog-details">
+          <p><span>October 26, 2020</span> by <span>Helen Evangelina</span></p>
+          <h2 class="blog-title">Review of R Package uscovid</h2>
+          <img class="feature-image" src="/images/blog/review3.jpg" alt="blog-feature-image">
+          
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This blog post will be a review of the R package called <a href="https://github.com/etc5523-2020/r-package-assessment-aarathybabu97">uscovid</a> with a pkgdown website <a href="https://etc5523-2020.github.io/r-package-assessment-aarathybabu97/">here</a>, created by Aarathy Babu.</p>
+<p>The purpose of the package is to launch the enclosed shiny web application which illustrates the global overview of COVID-19 and then further explore the state in United States. “The package makes it possible for a user to launch the app locally which would aid the user in reproducing the web application” (<span class="citation">Babu (2020)</span>). The <code>uscovid</code> package contains three datasets, three functions, and a shiny application which can be launched by the <code>launch_app()</code> function.</p>
+<p>The shiny application presents an overview of the global COVID-19 cases in terms of number of confirmed cases, deaths and recovered by using bar charts, and then explore COVID-19 in United States in more details, which is looking at the number of cases and tests per state and also explore the distribution of demographic patterns such as age, gender and race. The number of positive cases per state is presented through a choropleth map accompanied by a dot plot which illustrates the number of testing. The demographic pattern is presented by using bar charts in where users can select which parameter to look at. The functions are making the code simpler.</p>
+</div>
+<div id="what-did-i-think-this-package-would-do-did-it-do-it" class="section level1">
+<h1>What did I think this package would do? Did it do it?</h1>
+<p>Before talking about the package itself, I would like to talk about the installation. I encountered a problem when trying to install the package with <code>devtools::install_github("etc5523-2020/r-package-assessment-aarathybabu97")</code> which gave me the following error:</p>
+<p><code>Error: Failed to install 'uscovid' from GitHub:   (converted from warning) installation of package ‘C:/Users/helen/AppData/Local/Temp/RtmpctEBT8/file6d0c51cf4050/uscovid_0.0.0.9000.tar.gz’ had non-zero exit status</code></p>
+<p>I am not sure if this is an error on my local computer or on the package itself. But anyway, I finally cloned the repo and the package runs successfully.</p>
+<p>The <code>launch_app</code> function successfully launches the shiny application which presents a comprehensive and useful information regarding the overview of COVID-19 cases, starting with the global overview in the <code>World</code> tab and is followed by the state of COVID-19 in the United States of America on the <code>USA</code> tab. These information are presented well and clear so that users can easily understand the message wanted to be communicated, which is also complemented by user interactions.</p>
+<p>The README and vignette of the package provide concise and clear explanations of the package.</p>
+<div id="dataset" class="section level2">
+<h2>Dataset</h2>
+<p>The vignette clearly explains that there are three datasets in the package and also what does each function do. By doing <code>uscovid::datasetname</code>, all three datasets can be loaded successfully.</p>
+<ul>
+<li><p><strong>positive_cases</strong> dataset contains the cumulative positive cases of COVID-19 by state in the United States, with two columns, which fits the data description.</p></li>
+<li><p><strong>codes</strong> dataset presents the country names alongside with the two digit country code, which is in accordance to the description provided.</p></li>
+<li><p><strong>months_tests</strong> dataset consists of monthly test data of COVID-19 for United States, which is measured per individual state level, matching the data description.</p></li>
+</ul>
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<p>There are five functions provided in the package, which are as follow:</p>
+<ul>
+<li><p><strong>launch_app()</strong>, as expected from the name, this function could launce the shiny application successfully, providing the global overview of COVID-19 cases as well as explore COVID-19 data in the United States in more detailed.</p></li>
+<li><p><strong>selectin()</strong> generates a drop-down menu alongside with the corresponding visualisation, depending on the inputs, as mentioned in the documentation. Putting “world” as the id and “monthlist” as the choices would generate a list of months alongside with a table providing information on COVID-19 cases per country. The combination of “us” as the id and “statelist” as choices generates a list of states in the US accompanied by the dot plot. This function enables users to easily explore the data. And as explained in the documentation, this function does exactly what is said.</p></li>
+<li><p>As expected from the name, <strong>printext()</strong> prints strings as texts, which is in accordance to the documentation. By specifying “hi” inside the function, a text saying “hi” is generated.</p></li>
+<li><p><strong>sinput()</strong> and <strong>choosevar()</strong> are both relative to the shiny app, therefore these two functions could not be tested on the console.</p></li>
+</ul>
+<p>The datasets and functions are documented well with detailed and clear usage and explanations.</p>
+<p>My initial thought about what the package will do provided by the name <code>uscovid</code> was the package would provide an overview of the state of COVID-19 in the United States. However, the package also provides a global overview of COVID-19 cases, which provides a nice additional overview by firstly providing a summary of global cases, and then dive deeper into United States. As mentioned in the README and vignette, the shiny app provides an overview of testing number as well as the demographic distribution in the US in a way that is easy to understand. The shiny app itself is visually appealing and there are texts provided on the app which give more information. Overall, the package does what I thought the package would do and conveying all functionality well.</p>
+</div>
+</div>
+<div id="improvements" class="section level1">
+<h1>Improvements</h1>
+<p>After exploring the package, I found some areas of improvement that could be done to improve the package.</p>
+<div id="improvements-for-the-code" class="section level2">
+<h2>Improvements for the code?</h2>
+<p>In regards to the <code>selectin</code> function, there are two paired inputs which are “world” with “monthlist” and “usa” with “statelist”, providing a list of months accompanied by a table specifying COVID-19 cases overview per country and a list of states in the United States accompanied by a dot plot of number of tests. While this function is useful for users to explore the data through console without launching the app, there is no usage of this function in the shiny app itself, which does not fulfill the purpose of a function of simplifying the app.R code.</p>
+<p>Another issue encountered about the <code>selectin</code> function was when selectin(“world”, “statelist”) is run, it still generates the month list with the corresponding table, which does not fits the two inputs provided. Same thing with selectin(“usa”, “monthlist”) which also generates the state list of the US accompanied by the dot plot. Instead of making it with two inputs, it could be changed to only one input of “world” and “usa” only so that it would not confused reader. With the current design, users might think that there is a possibility of viewing the US plot being paired with the month list or US states being paired with the table. Another option would be to generate warning or error when non-paired inputs are put in.</p>
+<p>The <code>sinput</code> function does not really provide any useful function as it is basically the same thing as using <code>selectInput</code> function from <code>shiny</code>. The code could have been minimised. Here is a suggestion on how to minimise the code:</p>
+<pre><code>sinput &lt;- function(id, choice){
+  selectInput(id, label = paste0(&quot;Select&quot;, id), choice)
+}</code></pre>
+<p>Apart from that, the other functions and code inside the package are well-written and simplify the code used in app.R.</p>
+</div>
+<div id="improvements-for-the-shiny-app" class="section level2">
+<h2>Improvements for the shiny app?</h2>
+<p>Overall, the shiny app itself is visually appealing and there is a clear structure on the presentation of the app. There are explanations provided throughout the app which makes it easy for users to understand what is trying to be communicated. The only suggestion I could think of is to provide interactions on the map and linking it to the dot plot below, so that when a specific state on the map is clicked, it would update the dot plot to the selected state.</p>
+</div>
+<div id="is-the-documentation-sufficient-to-get-started" class="section level2">
+<h2>Is the documentation sufficient to get started?</h2>
+<p>As mentioned before, there is a clear and concise explanation provided in both the README and vignette. Documentation for the dataset and functions are also well written. For functions that are relying on the shiny app, it is mentioned in the documentation that these functions cannot be used outside the shiny app. However, there are no examples provided inside the documentation. Even though there are examples in the vignette, adding at least one example for each function in the documentation would help user to easily understand how to use the function without the need of looking at the vignette. Another note would be to maybe provide a link to the pkgdown website on the README file, thus users can easily view the pkgdown website.</p>
+</div>
+</div>
+<div id="what-i-have-learned-from-reviewing-the-package" class="section level1">
+<h1>What I have learned from reviewing the package?</h1>
+<p>By reviewing the package, I learned several insights. Firstly, I realised how important it is to provide clear instructions and explanations as the packages are shared with others. Therefore, the explanations have to be easily understand by everyone. When creating my package, I did not really pay attention to this kind of details and was just thinking through my own perspective as the creator of the package. I did not specify in the functions documentation file that there are some functions which are relative to the shiny app, and therefore could not be run in the console. Aarathy, on the other hand provides a clear description in the documentation clearly specifying this issue so that users would not get confused.</p>
+<p>In terms of the shiny app, I gained more insights about the COVID-19 trend in the US in terms of testing numbers and the demographic distribution. Other than that, I learned about <code>reactable</code> which could be used to make a clickable table that could enhance user interactions. This is something that I did not know before and it is definitely useful to be implemented in my future projects.</p>
+</div>
+<div id="appendix" class="section level1">
+<h1>Appendix</h1>
+<div id="package-review" class="section level2">
+<h2>Package Review</h2>
+<ul>
+<li>The <code>uscovid</code> package that I am reviewing was created by a classmate of mine in ETC5523 Communicating With Data unit in Monash University.<br />
+</li>
+<li><input type="checkbox" disabled="" checked="" />
+As the reviewer I confirm that there are no <a href="https://devguide.ropensci.org/policies.html#coi">conflicts of interest</a> for me to review this work.</li>
+</ul>
+</div>
+<div id="documentation" class="section level2">
+<h2>Documentation</h2>
+<p>The package includes all the following forms of documentation:<br />
+- [x] <strong>Installation instructions:</strong> for the package is found in README<br />
+- [x] <strong>Vignette(s)</strong> demonstrating major functionality that runs successfully locally<br />
+- [x] <strong>Function Documentation:</strong> for all exported functions in R help<br />
+- [ ] <strong>Examples</strong> for all exported functions in R Help that run successfully locally</p>
+<div id="functionality" class="section level3">
+<h3>Functionality</h3>
+<ul>
+<li><input type="checkbox" disabled="" checked="" />
+<strong>Installation:</strong> Installation succeeds as documented.<br />
+</li>
+<li><input type="checkbox" disabled="" checked="" />
+<strong>Functionality:</strong> Any functional claims of the software been confirmed.<br />
+</li>
+<li><input type="checkbox" disabled="" checked="" />
+<strong>Automated tests:</strong> Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.</li>
+</ul>
+</div>
+</div>
+<div id="review-comments" class="section level2">
+<h2>Review Comments</h2>
+<ul>
+<li>README file provides clear instructions on how to install the package.</li>
+<li>Vignette gives a clear explanation of the package.</li>
+<li>All functions are documented well which could be found in the R help.</li>
+<li>No examples provided in the documentation in R Help.<br />
+</li>
+<li>I had a problem installing the package locally but I am unsure if this is a problem with my local computer or the package. I cloned the repo and able to successfully install the package.<br />
+</li>
+<li>Functions work well.</li>
+<li>All tests cover the essential functions and successfully run.</li>
+</ul>
+<style type="text/css">
+
+html, body, p {
+  
+  font-size: 16px;
+  color: #333333;
+   text-align: justify;
+}
+
+html, body, div, h1 {
+  
+  font-size: 22px;
+  color: gray16;
+}
+
+html, body, div, h2 {
+  
+  font-size: 20px;
+  color: gray16;
+}
+
+th, td {
+    font-size: 16px;
+}
+</style>
+</div>
+</div>
+<div id="achknowledgements" class="section level1">
+<h1>Achknowledgements</h1>
+<p>This blog is made with <a href="https://github.com/StaticMania/roxo-hugo">roxo-hugo</a> theme of Blogdown (<span class="citation">Xie (2020)</span>).</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-package">
+<p>Babu, Aarathy. 2020. <em>Uscovid</em>.</p>
+</div>
+<div id="ref-blogdown">
+<p>Xie, Yihui. 2020. <em>Blogdown: Create Blogs and Websites with R Markdown</em>.</p>
+</div>
+</div>
+</div>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+
+
+
+        </main><footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="site-footer-logo"><a href="/"><img src="/images/logo-footer.png" alt="logo-footer"></a></div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6">
+        <div class="site-footer-widget">
+          <h5 class="site-footer-widget-title">Contact Info</h5>
+          <p class="site-footer-widget-description">
+            
+            <br>
+            <a href="tel:0481777655">0481777655</a>
+            <br>
+            <a href="mailto:heva0001@student.monash.edu">heva0001@student.monash.edu</a>
+          </p>
+        </div>
+      </div>
+      
+      
+      
+      <div class="col-lg-2 col-md-6">
+        <div class="site-footer-widget">
+          <h5 class="site-footer-widget-title">Social Media</h5>
+          <ul class="site-footer-widget-links">
+            
+              <li><a href="https://www.facebook.com/helen.evangelina">Facebook</a></li>
+            
+              <li><a href="https://github.com/helenevangelinaa">GitHub</a></li>
+            
+              <li><a href="https://www.instagram.com/helenevangelina/?hl=en">Instagram</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      
+      <div class="col-lg-2 col-12">
+        <a href="#top" class="site-footer-widget-top">
+          <img src="/images/to-top.svg" alt="back-to-top">
+          <p>
+            I want to 
+            <br>
+            visit again
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="/js/formhandler.min.js"></script>
+
+<script src="/js/vendor.min.js"></script>
+
+<script src="/js/script.min.js"></script></body>
+</html>

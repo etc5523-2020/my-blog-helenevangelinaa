@@ -6,10 +6,19 @@
     <description>Recent content in regression on Website Blog | Helen Evangelina</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/regression/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Review of R Package uscovid</title>
+      <link>/blog/blogpost4-packagereview/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/blogpost4-packagereview/</guid>
+      <description>IntroductionThis blog post will be a review of the R package called uscovid with a pkgdown website here, created by Aarathy Babu.</description>
+    </item>
     
     <item>
       <title>Self-review of my Shiny app on COVID-19</title>
@@ -17,8 +26,7 @@
       <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/blogpost3-selfreview/</guid>
-      <description>This blog post will be a self-review of the shiny app on COVID-19 overview that I previously made which can be found here.
-IntroductionCOVID-19 has currently became a global trend since it spread worldwide from China’s Hubei Province.</description>
+      <description>This blog post will be a self-review of the shiny app on COVID-19 overview that I previously made which can be found here.</description>
     </item>
     
     <item>
@@ -27,7 +35,7 @@ IntroductionCOVID-19 has currently became a global trend since it spread worldw
       <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/blogpost2-egypt/</guid>
-      <description>COVID-19 pandemic has been declared as a Public Health Emergency of International Concern by the World Health Organisation. It has been a global issue since the first outbreak from China’s Hubei Province, and it is destroying economies worldwide.</description>
+      <description>COVID-19 pandemic has been declared as a Public Health Emergency of International Concern by the World Health Organisation.</description>
     </item>
     
     <item>
