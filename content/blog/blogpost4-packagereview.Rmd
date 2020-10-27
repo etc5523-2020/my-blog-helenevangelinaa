@@ -1,0 +1,94 @@
+---
+title: "Review of R Package "uscovid""
+author: "Helen Evangelina"
+date: '2020-10-26'
+image: images/blog/selfreview.jpg
+feature_image: images/blog/review2.jpg
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+output: 
+  blogdown::html_page:
+    fig_width: 6
+    dev: "svg"
+bibliography: references3.bib
+biblio-style: authoryear-comp
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+# Introduction
+
+This blog post will be a review of the R package called [uscovid](https://github.com/etc5523-2020/r-package-assessment-aarathybabu97) with a pkgdown website [here](https://etc5523-2020.github.io/r-package-assessment-aarathybabu97/), created by Aarathy Babu.  
+
+The purpose of the package is to launch the enclosed shiny web application which illustrates the global overview of COVID-19 and then further explore the state in United States. "The package makes it possible for a user to launch the app locally which would aid the user in reproducing the web application" (@package). The `uscovid` package contains three datasets, three functions, and a shiny application which can be launched by the `launch_app()` function. 
+
+The shiny application presents an overview of the global COVID-19 cases in terms of number of confirmed cases, deaths and recovered by using bar charts, and then explore COVID-19 in United States in more details, which is looking at the number of cases and tests per state and also explore the distribution of demographic patterns such as age, gender and race. The number of positive cases per state is presented through a choropleth map accompanied by a dot plot which illustrates the number of testing. The demographic pattern is presented by using bar charts in where users can select which parameter to look at. The functions are making the code simpler.
+
+(put in more details?)
+
+# What did I think this package would do? Did it do it?
+
+Before talking about the package itself, I would like to talk about the installation. I encountered a problem when trying to install the package with `devtools::install_github("etc5523-2020/r-package-assessment-aarathybabu97")` which gave me the following error:  
+
+`Error: Failed to install 'uscovid' from GitHub:
+  (converted from warning) installation of package ‘C:/Users/helen/AppData/Local/Temp/RtmpctEBT8/file6d0c51cf4050/uscovid_0.0.0.9000.tar.gz’ had non-zero exit status`  
+  
+I am not sure if this is an error on my local computer or on the package itself. But anyway, I finally cloned the repo and the package runs successfully. 
+
+The `launch_app` function successfully launches the shiny application which presents a comprehensive and useful information regarding the overview of COVID-19 cases, starting with the global overview in the `World` tab and is followed by the state of COVID-19 in the United States of America on the `USA` tab. These information are presented well and clear so that users can easily understand the message wanted to be communicated, which is also complemented by user interactions.
+
+The README and vignette of the package provide concise and clear explanations of the package. 
+
+## Dataset
+The vignette clearly explains that there are three datasets in the package and also what does each function do. By doing `uscovid::datasetname`, all three datasets can be loaded successfully. 
+
+- **positive_cases** dataset contains the cumulative positive cases of COVID-19 by state in the United States, with two columns, which fits the data description.  
+
+- **codes** dataset presents the country names alongside with the two digit country code, which is in accordance to the description provided.  
+
+- **months_tests** dataset consists of monthly test data of COVID-19 for United States, which is measured per individual state level, matching the data description.
+
+## Functions
+There are five functions provided in the package, which are as follow:  
+
+- **launch_app()**, as expected from the name, this function could launce the shiny application successfully, providing the global overview of COVID-19 cases as well as explore COVID-19 data in the United States in more detailed.  
+
+- **selectin()** generates a drop-down menu alongside with the corresponding visualisation, depending on the inputs, as mentioned in the documentation. Putting "world" as the id and "monthlist" as the choices would generate a list of months alongside with a table providing information on COVID-19 cases per country. The combination of "us" as the id and "statelist" as choices generates a list of states in the US accompanied by the dot plot. This function enables users to easily explore the data. And as explained in the documentation, this function does exactly what is said.  
+
+- As expected from the name, **printext()** prints strings as texts, which is in accordance to the documentation. By specifying "hi" inside the function, a text saying "hi" is generated.
+
+- **sinput()** and **choosevar()** are both relative to the shiny app, therefore these two functions could not be tested on the console.
+
+The datasets and functions are documented well with detailed and clear usage and explanations.
+
+My initial thought about what the package will do provided by the name `uscovid` was the package would provide an overview of the state of COVID-19 in the United States. However, the package also provides a global overview of COVID-19 cases, which provides a nice additional overview by firstly providing a summary of global cases, and then dive deeper into United States. As mentioned in the README and vignette, the shiny app provides an overview of testing number as well as the demographic distribution in the US in a way that is easy to understand. The shiny app itself is visually appealing and there are texts provided on the app which give more information. Overall, the package does what I thought the package would do and conveying all functionality well.
+
+# Improvements
+After exploring the package, I found some areas of improvement that could be done to improve the package.
+
+## Improvements for the code?
+
+In regards to the `selectin` function, there are two paired inputs which are "world" with "monthlist" and "usa" with "statelist", providing a list of months accompanied by a table specifying COVID-19 cases overview per country and a list of states in the United States accompanied by a dot plot of number of tests. While this function is useful for users to explore the data through console without launching the app, there is no usage of this function in the shiny app itself, which does not fulfill the purpose of a function of simplifying the app.R code.    
+
+Another issue encountered about the `selectin` function was when selectin("world", "statelist") is run, it still generates the month list with the corresponding table, which does not fits the two inputs provided. Same thing with selectin("usa", "monthlist") which also generates the state list of the US accompanied by the dot plot. Instead of making it with two inputs, it could be changed to only one input of "world" and "usa" only so that it would not confused reader. With the current design, users might think that there is a possibility of viewing the US plot being paired with the month list or US states being paired with the table. Another option would be to generate warning or error when non-paired inputs are put in. 
+
+The `sinput` function does not really provide any useful function as it is basically the same thing as using `selectInput` function from `shiny`. The code could have been minimised. Here is a suggestion on how to minimise the code:  
+
+```
+sinput <- function(id, choice){
+  
+  selectInput(id, label = paste0("Select", id), choice)
+}
+```          
+
+Apart from that, the other functions and code inside the package are well-written and simplify the code used in app.R.
+
+## Improvements for the shiny app?
+Overall, the shiny app itself is visually appealing and there is a clear structure on the presentation of the app. There are explanations provided throughout the app which makes it easy for users to understand what is trying to be communicated. The only suggestion I could think of is to provide interactions on the map and linking it to the dot plot below, so that when a specific state on the map is clicked, it would update the dot plot to the selected state.
+
+## Is the documentation sufficient to get started?
+As mentioned before, there is a clear and concise explanation provided in both the README and vignette. Documentation for the dataset and functions are also well written. For functions that are relying on the shiny app, it is mentioned in the documentation that these functions cannot be used outside the shiny app. However, there are no examples provided inside the documentation. Even though there are examples in the vignette, adding at least one example for each function in the documentation would help user to easily understand how to use the function without the need of looking at the vignette. Another note would be to maybe provide a link to the pkgdown website on the README file, thus users can easily view the pkgdown website.    
+
+# What I have learned from reviewing the package?
