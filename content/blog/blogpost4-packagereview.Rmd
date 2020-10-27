@@ -92,3 +92,35 @@ Overall, the shiny app itself is visually appealing and there is a clear structu
 As mentioned before, there is a clear and concise explanation provided in both the README and vignette. Documentation for the dataset and functions are also well written. For functions that are relying on the shiny app, it is mentioned in the documentation that these functions cannot be used outside the shiny app. However, there are no examples provided inside the documentation. Even though there are examples in the vignette, adding at least one example for each function in the documentation would help user to easily understand how to use the function without the need of looking at the vignette. Another note would be to maybe provide a link to the pkgdown website on the README file, thus users can easily view the pkgdown website.    
 
 # What I have learned from reviewing the package?
+
+By reviewing the package, I learned several insights. Firstly, I realised how important it is to provide clear instructions and explanations as the packages are shared with others. Therefore, the explanations have to be easily understand by everyone. When creating my package, I did not really pay attention to this kind of details and was just thinking through my own perspective as the creator of the package. I did not specify in the functions documentation file that there are some functions which are relative to the shiny app, and therefore could not be run in the console. Aarathy, on the other hand provides a clear description in the documentation clearly specifying this issue so that users would not get confused.  
+
+In terms of the shiny app, I gained more insights about the COVID-19 trend in the US in terms of testing numbers and the demographic distribution. Other than that, I learned about `reactable` which could be used to make a clickable table that could enhance user interactions. This is something that I did not know before and it is definitely useful to be implemented in my future projects.
+
+# Appendix
+## Package Review
+- The `uscovid` package that I am reviewing was created by a classmate of mine in ETC5523 Communicating With Data unit in Monash University.   
+- [x] As the reviewer I confirm that there are no [conflicts of interest](https://devguide.ropensci.org/policies.html#coi) for me to review this work.
+
+#### Documentation
+The package includes all the following forms of documentation:
+- [x] **Installation instructions:** for the package is found in README
+- [x] **Vignette(s)** demonstrating major functionality that runs successfully locally
+- [x] **Function Documentation:** for all exported functions in R help
+- [ ] **Examples** for all exported functions in R Help that run successfully locally
+
+#### Functionality
+- [x] **Installation:** Installation succeeds as documented.
+- [x] **Functionality:** Any functional claims of the software been confirmed.
+- [x] **Automated tests:** Unit tests cover essential functions of the package
+and a reasonable range of inputs and conditions. All tests pass on the local machine.
+
+### Review Comments
+
+- README file provides clear instructions on how to install the package.
+- Vignette gives a clear explanation of the package.
+- All functions are documented well which could be found in the R help.
+- No examples provided in the documentation in R Help.  
+- I had a problem installing the package locally but I am unsure if this is a problem with my local computer or the package. I cloned the repo and able to successfully install the package.  
+- Functions work well.
+- All tests cover the essential functions and successfully run.
